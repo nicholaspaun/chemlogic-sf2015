@@ -101,7 +101,7 @@ thispagestyle{empty}
 
 
 \backslash
-enlargethispage{2
+enlargethispage{3
 \backslash
 baselineskip}
 \end_layout
@@ -117,6 +117,13 @@ baselineskip}
 \mathrm{CH_{4}+O_{2}\rightarrow CO_{2}+H_{2}O}
 \end{align*}
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.2in
 \end_inset
 
 
@@ -167,6 +174,13 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace -0.1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Graphics
 	filename arrow-parsing.svg
@@ -195,6 +209,10 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \end{array}
 \end{align*}
 
+\end_inset
+
+
+\begin_inset VSpace -0.2in
 \end_inset
 
 
@@ -234,6 +252,13 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace -0.2in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Graphics
 	filename arrow-parsing.svg
@@ -245,7 +270,7 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace -0.5in
+\begin_inset VSpace -0.3in
 \end_inset
 
 
