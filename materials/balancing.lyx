@@ -1,0 +1,304 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extarticle
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 14
+\spacing single
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.8in
+\topmargin 0.1in
+\rightmargin 0.8in
+\headheight 0.5in
+\headsep 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle empty
+\bullet 0 3 25 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Balancing Chemical Equations
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.9in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+enlargethispage{2
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\mathrm{CH_{4}+O_{2}\rightarrow CO_{2}+H_{2}O}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-parsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CoeffS = [a, b, c, d]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ElemS = [['C'], ['H'], ['O'], ['C'], ['O'], ['H'], ['O']]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+FormulaS = [[[['C'], 1], [['H'], 4]], [[['O'], 2]], [[['C'], 1], [['O'],
+ 2]], [[['H'], 2], [['O'], 1]]]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Equation = [[['C'], ['H'], ['O']], [['C'], ['O'], ['H'], ['O']]]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ElementSideSet = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1],
+ [['O'], 2]], [[['H'], 2], [['O'], 1]]]]
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-parsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\begin{array}{c|cccc}
+ & \mathrm{CH_{4}} & \mathrm{O_{2}} & \mathrm{-CO_{2}} & -\mathrm{H_{2}O}\\
+\hline \mathrm{C} & 1 & 0 & -1 & 0\\
+\mathrm{H} & 4 & 0 & 0 & -2\\
+\mathrm{O} & 0 & 2 & -2 & -1
+\end{array}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-parsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\begin{cases}
+1a+0b-1c-0d & =0\\
+4a+0b-0c-2d & =0\\
+0a+2b-2c-1d & =0
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-parsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+a & =1\\
+b & =2\\
+c & =1\\
+d & =2
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-parsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\mathrm{CH_{4}+\mathbf{\mathit{2}}O_{2}\rightarrow CO_{2}+\mathbf{\mathit{2}}H_{2}O}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
