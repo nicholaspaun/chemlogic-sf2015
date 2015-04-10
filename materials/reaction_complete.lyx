@@ -199,7 +199,7 @@ Cl
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-tabulation.svg
+	filename arrow-pattern-matching.svg
 	scale 50
 
 \end_inset
@@ -234,7 +234,7 @@ Cl
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-system.svg
+	filename arrow-det-formulas.svg
 	scale 50
 
 \end_inset
@@ -272,7 +272,7 @@ Cl
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-solving.svg
+	filename arrow-ins-products.svg
 	scale 50
 
 \end_inset
@@ -323,55 +323,7 @@ Cl
 \begin_inset Quotes erd
 \end_inset
 
-, 1]]], [
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-[["Na",1],["Br",1]]
-\family typewriter
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-,
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-[["Zn",1],["Cl",2]]
-\family typewriter
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-]]
+, 1]]], [[["Na",1],["Br",1]],[["Zn",1],["Cl",2]]]]
 \end_layout
 
 \begin_layout Standard
