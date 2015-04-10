@@ -134,16 +134,10 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace -0.5in
+\begin_inset VSpace -0.2in
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-
-\family typewriter
-CoeffS = [a, b, c, d]
 \end_layout
 
 \begin_layout Standard
@@ -162,14 +156,14 @@ FormulaS = [[[['C'], 1], [['H'], 4]], [[['O'], 2]], [[['C'], 1], [['O'],
 \begin_layout Standard
 
 \family typewriter
-Equation = [[['C'], ['H'], ['O']], [['C'], ['O'], ['H'], ['O']]]
+ElementSideSet = [[['C'], ['H'], ['O']], [['C'], ['O'], ['H'], ['O']]]
 \end_layout
 
 \begin_layout Standard
 
 \family typewriter
-ElementSideSet = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1],
- [['O'], 2]], [[['H'], 2], [['O'], 1]]]]
+Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
+ 2]], [[['H'], 2], [['O'], 1]]]]
 \end_layout
 
 \begin_layout Standard
@@ -258,14 +252,20 @@ ElementSideSet = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1],
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\begin{align*}
-a & =1\\
-b & =2\\
-c & =1\\
-d & =2
-\end{align*}
+\align center
+\begin_inset Formula $a=1$
+\end_inset
 
+, 
+\begin_inset Formula $b=2$
+\end_inset
+
+, 
+\begin_inset Formula $c=1$
+\end_inset
+
+, 
+\begin_inset Formula $d=2$
 \end_inset
 
 
