@@ -56,9 +56,9 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 0.8in
+\leftmargin 0.1in
 \topmargin 0.1in
-\rightmargin 0.8in
+\rightmargin 0.1in
 \headheight 0.5in
 \headsep 0.5in
 \secnumdepth 3
@@ -201,23 +201,11 @@ C
 
 \begin_layout Plain Layout
 
-					[.Number
+					Number
 \backslash
 
 \backslash
 1
-\end_layout
-
-\begin_layout Plain Layout
-
-						$[
-\backslash
- ]$
-\end_layout
-
-\begin_layout Plain Layout
-
-					]
 \end_layout
 
 \begin_layout Plain Layout
@@ -405,23 +393,11 @@ C
 
 \begin_layout Plain Layout
 
-					[.Number
+					Number
 \backslash
 
 \backslash
 1
-\end_layout
-
-\begin_layout Plain Layout
-
-						$[
-\backslash
- ]$
-\end_layout
-
-\begin_layout Plain Layout
-
-					]
 \end_layout
 
 \begin_layout Plain Layout
@@ -492,7 +468,7 @@ O
 \backslash
 
 \backslash
-H$_{2}O$
+H$_{2}$O
 \end_layout
 
 \begin_layout Plain Layout
@@ -577,23 +553,11 @@ O
 
 \begin_layout Plain Layout
 
-					[.Number
+					Number
 \backslash
 
 \backslash
 1
-\end_layout
-
-\begin_layout Plain Layout
-
-						$[
-\backslash
- ]$
-\end_layout
-
-\begin_layout Plain Layout
-
-					]
 \end_layout
 
 \begin_layout Plain Layout
