@@ -141,7 +141,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace -0.2in
+\begin_inset VSpace -0.1in
 \end_inset
 
 
@@ -183,7 +183,7 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-parsing.svg
+	filename arrow-tabulation.svg
 	scale 50
 
 \end_inset
@@ -221,7 +221,7 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-parsing.svg
+	filename arrow-system.svg
 	scale 50
 
 \end_inset
@@ -261,7 +261,7 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-parsing.svg
+	filename arrow-solving.svg
 	scale 50
 
 \end_inset
@@ -299,7 +299,7 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename arrow-parsing.svg
+	filename arrow-deparsing.svg
 	scale 50
 
 \end_inset
