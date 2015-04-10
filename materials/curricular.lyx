@@ -65,6 +65,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle empty
+\bullet 0 3 25 -1
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -100,7 +101,7 @@ thispagestyle{empty}
 
 
 \backslash
-enlargethispage{
+enlargethispage{2
 \backslash
 baselineskip}
 \end_layout
