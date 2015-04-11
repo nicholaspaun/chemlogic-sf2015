@@ -1,0 +1,407 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extarticle
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 14
+\spacing single
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.8in
+\topmargin 0.1in
+\rightmargin 0.8in
+\headheight 0.5in
+\headsep 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle empty
+\bullet 0 3 25 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Performing Stoichiometric Calculations
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.9in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+enlargethispage{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\mathrm{20\, L\, CH_{4}+10\, L\, O_{2}\rightarrow CO_{2}+H_{2}O}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Queries: L excess, L excess, L produced, g produced
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.2in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-parsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+FormulaS = [[[['C'], 1], [['H'], 4]], [[['O'], 2]], [[['C'], 1], [['O'],
+ 2]], [[['H'], 2], [['O'], 1]]]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+QtyS = [[[[20, 2], 'L']], [[[10, 2], 'L']], nil, nil]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+QueryS = [[[[[W, _], 'L']], excess], [[[[X, _], 'L']], excess], [[[[Y, _],
+ 'L']], actual], [[[[Z, _], g]], actual]]
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-convmol.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+QtyS = [[[[0.8923, 2], mol]], [[[0.4462, 2], mol]], nil, nil]
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+Only One Reactant Quantity:
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename arrow-straighthrough.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+QtyIn = ...
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+FormulaIn = ...
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+More Than One Reactant Quantity:
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename arrow-detlim.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+FormulaLim = [[['O'], 2]]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+QtyLim = [[[0.4462, 2], mol]]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-convres.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.2in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $W=15.0$
+\end_inset
+
+, 
+\begin_inset Formula $\mathrm{X=0.0}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathrm{Y=5.0}$
+\end_inset
+
+, 
+\begin_inset Formula $Z=8.0375$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename arrow-deparsing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\begin{array}{cccccccc}
+ & 20\, L\, CH_{4} & + & \mathrm{10\, L\,\mathit{2}O_{2}} & \rightarrow & \mathrm{CO_{2}} & + & \mathrm{\mathit{2}H_{2}O}\\
+\mbox{Results: } & \mbox{=\emph{15 L excess}} &  & \mbox{\emph{=\,0 L excess}} &  & \mbox{\emph{=5 L produced}} &  & \mbox{\emph{=8 g produced}}
+\end{array}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
