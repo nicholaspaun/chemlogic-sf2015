@@ -80,7 +80,7 @@ Abstract
 \end_layout
 
 \begin_layout Author
-67 words.
+64 words.
 \end_layout
 
 \begin_layout Standard
@@ -132,8 +132,7 @@ Chemlogic is a logic program for performing stoichiometric calculations,
 These features are implemented using a chemical information database, grammatica
 l rules, and a linear equation solver.
  Chemlogic can provide guidance for resolving syntax and other errors.
- It is designed as a study tool and is available as an Android App and a
- Web interface.
+ It is designed as a study tool and is available on the Web and Android.
 \end_layout
 
 \end_body
