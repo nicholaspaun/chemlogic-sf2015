@@ -124,8 +124,8 @@ baselineskip}
 \end_inset
 
 Chemlogic is a logic program for performing stoichiometric calculations,
- converting chemical quantities, balancing and completing chemical equations,
- and converting chemical formulas and names.
+ converting chemical quantities, balancing and completing equations, and
+ converting formulas to/from names.
 \end_layout
 
 \begin_layout Standard
