@@ -79,6 +79,10 @@
 Abstract
 \end_layout
 
+\begin_layout Author
+80 words.
+\end_layout
+
 \begin_layout Standard
 \begin_inset VSpace -0.9in
 \end_inset
@@ -135,10 +139,8 @@ These features are implemented using a database of chemical information,
 \end_layout
 
 \begin_layout Standard
-It is available as an Android App and a Web interface, designed as a study
- tool for chemistry students, and also includes a command-line domain-specific
- language.
- 
+It is designed as a study tool for Chemistry students and is available as
+ an Android App and a Web interface.
 \end_layout
 
 \end_body
