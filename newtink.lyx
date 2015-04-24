@@ -119,22 +119,18 @@ baselineskip}
 \begin_inset Newline newline
 \end_inset
 
-Chemlogic is a logic program for performing  stoichiometric calculations,
- converting quantities, balancing and completing equations and converting
- formulas to/from names.
+Chemlogic is a logic program for performing chemistry calculations and conversio
+ns, including stoichiometry, unit conversion, equation balancing and completion,
+ and conversion between names and formulas.
  
 \end_layout
 
 \begin_layout Standard
-These features are implemented using a chemical information database, grammatica
-l rules, and a linear equation solver.
+The features are implemented using a chemical information database, grammatical
+ rules, and a linear equation solver.
+ Web, Android and command-line interfaces are included.
  Chemlogic can provide guidance for resolving syntax and other errors.
  
-\end_layout
-
-\begin_layout Standard
-It is available as an Android App and a Web interface, designed as a study
- tool for chemistry students.
 \end_layout
 
 \end_body
