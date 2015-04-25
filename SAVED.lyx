@@ -98,5 +98,20 @@ c calculations, balances and completes equations, and converts between formulas
  Chemlogic is available on Android and the Web.
 \end_layout
 
+\begin_layout Section
+Version XX
+\end_layout
+
+\begin_layout Standard
+Chemlogic is a logic program for computer chemistry that performs stoichiometric
+ calculations, balances and completes equations, and converts between formulas
+ and names.
+ The program has applications in education, particularly as a study tool.
+ Features are implemented using a chemical information database, linear
+ equation solver, and grammatical rules, and guidance is provided for resolving
+ errors in user input.
+ Chemlogic is available on Android and the Web.
+\end_layout
+
 \end_body
 \end_document
