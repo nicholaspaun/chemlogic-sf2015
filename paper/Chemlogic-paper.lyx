@@ -365,12 +365,25 @@ Syntax errors
 Multiple interfaces are supported
 \noun default
  in Chemlogic.
- Currently, command-line and Web interfaces have been implemented.
+ Currently, Android, command-line and Web interfaces have been implemented.
  In order to show correct symbols and formatting (e.g.
  subscripts) in each interface, there is an output formatting module that
  allows each parser to automatically use the correct symbols.
  The error handling module re-throws its syntax errors to a simple error
  handler for each interface.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Android NOTES
+\end_layout
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -391,6 +404,15 @@ Metaprogramming is an excellent feature in Prolog
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+CUT? 
+\end_layout
+
+\end_inset
+
 Prolog also allows a programmer to define new operators that extend the
  programming language and provide simple syntax for repetitive tasks.
  Chemlogic defines an operator that throws a syntax error, if a predicate
@@ -400,8 +422,17 @@ Prolog also allows a programmer to define new operators that extend the
 \end_layout
 
 \begin_layout Standard
-Chemlogic also implements a very simple Domain Specific Language (DSL) on
- top of Prolog, using metaprogramming techniques.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+CUT
+\end_layout
+
+\end_inset
+
+ Chemlogic also implements a very simple Domain Specific Language (DSL)
+ on top of Prolog, using metaprogramming techniques.
  This DSL is a proof-of-concept and consists of three rules that provide
  simple syntax for a user to query Chemlogic.
  DSL clauses can be composed into very simple programs and the full features
@@ -438,8 +469,21 @@ The time taken by the algorithms used in Chemlogic could not be analyzed
 \end_inset
 
 
-\noun on
+\begin_inset Note Note
+status open
 
+\begin_layout Plain Layout
+Need new discussion.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\noun on
 \begin_inset Note Note
 status open
 
@@ -509,6 +553,64 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+Briefly, why Prolog was chosen.
+\end_layout
+
+\begin_layout Itemize
+New pieces fit together well in the modular structure.
+\end_layout
+
+\begin_layout Itemize
+New features were implemented by manipulating abstract syntax trees generated
+ by previously developed parsers.
+\end_layout
+
+\begin_layout Itemize
+This allowed new features to be integrated into the system and to be used
+ in flexible ways.
+\end_layout
+
+\begin_layout Itemize
+The existing design of Chemlogic was very flexible and did not require much
+ rewriting.
+\end_layout
+
+\begin_layout Itemize
+Most changes consisted of modifying the parsers to expose more information
+ to other parts of the program.
+\end_layout
+
+\begin_layout Itemize
+The output formatting module allowed Chemlogic to produce output for the
+ Android interface without requiring significant modifications.
+\end_layout
+
+\begin_layout Itemize
+Running the original cross-compiled code of Chemlogic on the Android platform
+ and communicating over Unix pipes allowed the entire capabilities of Chemlogic
+ to be made available on the Android platform, without platform-specific
+ modifications.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Running the original cross-compiled code of Chemlogic on the Android platform
+ and communicating over Unix pipes allowed new features and bugfixes to
+ be easily transferred to the Android platform, without requiring customized
+ modifications.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \noun on
 Prolog was chosen
@@ -519,6 +621,15 @@ Prolog was chosen
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+REDO
+\end_layout
+
+\end_inset
+
 Prolog includes support for DCGs, which allow a programmer to implement
  a parser using a very simple syntax, without requiring manual parser writing.
  Using DCGs, it is easy to write grammatical rules, test them and add more
@@ -532,6 +643,15 @@ SWI-Prolog's CLP(q) facility made solving systems of linear equations extremely
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+REDO
+\end_layout
+
+\end_inset
+
 Using a logic programming language, such as Prolog, enables the programmer
  to describe the results, instead of the process.
 \begin_inset CommandInset citation
@@ -546,7 +666,16 @@ key "wielemaker:2011:tplp"
 \end_layout
 
 \begin_layout Standard
-Prolog also has very strong support for metaprogramming, which was used
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+REDO
+\end_layout
+
+\end_inset
+
+ Prolog also has very strong support for metaprogramming, which was used
  in a few places in Chemlogic, where the amount of boilerplate code needed
  was reduced, making code easier to read.
 \begin_inset Newline newline
@@ -558,10 +687,11 @@ Prolog also has very strong support for metaprogramming, which was used
 
 
 \noun on
-Chemlogic was successfully implemented
+Chemlogic was successfully extended
 \noun default
- using Prolog, in a well-designed and modular structure, and could balance
- chemical equations, convert names to formulas and vice versa.
+ to implement new features, based upon the existing well-designed and modular
+ structure, and can now perform stoichiometric calculations, convert chemical
+ quantities between units and complete chemical reactions.
 \begin_inset CommandInset label
 LatexCommand label
 name "END"
