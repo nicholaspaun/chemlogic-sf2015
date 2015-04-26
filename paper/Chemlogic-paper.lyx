@@ -159,6 +159,16 @@ thispagestyle{fancy}
 \end_layout
 
 \begin_layout Section*
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+$$$
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $*$
 \end_inset
 
@@ -429,7 +439,17 @@ The time taken by the algorithms used in Chemlogic could not be analyzed
 
 
 \noun on
-Further research and development
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+$$
+\end_layout
+
+\end_inset
+
+ Further research and development
 \noun default
  --- It would be interesting to compare the balancing algorithm used, with
  one that attempts to balance equations by trial-and-error.
@@ -455,6 +475,12 @@ Currently, Chemlogic attempts to distinguish sub-classes of errors to make
 \begin_layout Standard
 The parsers currently implemented in Chemlogic process user input directly,
  as character lists, without a tokenization process.
+ Using new features available in version 7 of SWI-Prolog, a simple and fast
+ procedure could be implemented to separate user input into space-delimited
+ parts.
+ Prolog's pattern matching capabilities could then easily be used to determine
+ the correct parser for the given input, which would significantly reduce
+ the number of tests and operations required to perform parsing.
 \end_layout
 
 \begin_layout Standard
@@ -587,7 +613,16 @@ pageref{APPEND}}
 \end_layout
 
 \begin_layout Section*
-Earlier Work
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+$$
+\end_layout
+
+\end_inset
+
+ Earlier Work
 \end_layout
 
 \begin_layout Standard
@@ -617,7 +652,16 @@ In 2014 and 2015, Chemlogic was further developed to significantly expand
 \end_layout
 
 \begin_layout Section*
-Acknowledgments
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+$$$
+\end_layout
+
+\end_inset
+
+ Acknowledgments
 \end_layout
 
 \begin_layout Standard
@@ -640,7 +684,16 @@ I would also like to thank Mr.
 \end_layout
 
 \begin_layout Section*
-Obtaining Chemlogic / Contact
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+$$$
+\end_layout
+
+\end_inset
+
+ Obtaining Chemlogic / Contact
 \end_layout
 
 \begin_layout Standard
@@ -675,7 +728,16 @@ http://icebergsys.ca/chemlogic
 \end_layout
 
 \begin_layout Section*
-References
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+ References
 \end_layout
 
 \begin_layout Standard
