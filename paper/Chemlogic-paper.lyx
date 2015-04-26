@@ -453,10 +453,10 @@ Currently, Chemlogic attempts to distinguish sub-classes of errors to make
 \end_layout
 
 \begin_layout Standard
-The program could be extended to add more chemistry features, including:
- structural formulas and the names of more complex organic compounds, stoichiome
-tric calculations and completion of simple reaction types (a very complex
- task).
+The program could be extended to add more chemistry features, including
+ support for: structures of polyelectronic atoms, structural formulas and
+ the names of more complex organic compounds, and equilibrium calculations
+ and analysis.
 \end_layout
 
 \begin_layout Section*
