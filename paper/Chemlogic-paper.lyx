@@ -453,10 +453,29 @@ Currently, Chemlogic attempts to distinguish sub-classes of errors to make
 \end_layout
 
 \begin_layout Standard
+The parsers currently implemented in Chemlogic process user input directly,
+ as character lists, without a tokenization process.
+\end_layout
+
+\begin_layout Standard
+An important extension to Chemlogic, would be to add support for automatically
+ generating and marking random chemistry problems.
+ This feature could be used by students to review concepts and by teachers
+ to automate the marking of simple problems.
+ With the addition of support for reaction type analysis, the preliminary
+ work for this feature has been completed.
+ The reaction type, equation, formula and name grammars in Chemlogic could
+ be extended to produce random valid structures, in addition to simply recognizi
+ng and converting them.
+ These structures could then be included in problems presented by a new
+ user interface.
+\end_layout
+
+\begin_layout Standard
 The program could be extended to add more chemistry features, including
- support for: structures of polyelectronic atoms, structural formulas and
- the names of more complex organic compounds, and equilibrium calculations
- and analysis.
+ support for: electronic structures of atoms, structural formulas and the
+ names of more complex organic compounds, and equilibrium calculations and
+ analysis.
 \end_layout
 
 \begin_layout Section*
