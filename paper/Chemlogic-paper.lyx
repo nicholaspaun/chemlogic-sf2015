@@ -568,6 +568,36 @@ pageref{APPEND}}
 \end_layout
 
 \begin_layout Section*
+Earlier Work
+\end_layout
+
+\begin_layout Standard
+The original version of Chemlogic was an experimental program I developed
+ in 2012, to simplify my Science homework.
+ 
+\end_layout
+
+\begin_layout Standard
+Based on these experiments, the project was extended in 2013 and 2014.
+ The program was rewritten in Prolog, new algorithms were studied and adapted
+ and many new features were implemented.
+ The current modular design and structure of Chemlogic was implemented in
+ Version 1, which supported balancing chemical equations, converting chemical
+ names to formulas, and vice-versa.
+ This version was presented at the 2014 CWSF in Windsor, where it received
+ a Bronze Excellence Award.
+\end_layout
+
+\begin_layout Standard
+In 2014 and 2015, the project was further developed to improve and significantly
+ expand the project, by adding a new user interface, support for higher
+ levels of high school Chemistry and by continuing to extend existing features.
+ Version 2 of Chemlogic introduced the Android user interface and support
+ for stoichiometric calculations, chemical unit conversions and reaction
+ type analysis.
+\end_layout
+
+\begin_layout Section*
 Acknowledgments
 \end_layout
 
