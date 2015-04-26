@@ -381,6 +381,88 @@ status open
 Android NOTES
 \end_layout
 
+\begin_layout Subsubsection
+Summary
+\end_layout
+
+\begin_layout Plain Layout
+The Chemlogic App for Android was developed to allow users to use the program
+ on a mobile device.
+ Due to the popularity of mobile devices and the convience of mobile application
+s, this improvement greatly increases the number of users who would use
+ the program and enables students to easily use Chemlogic as a study tool
+ for chemistry classes.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+The existing code of Chemlogic, written in Prolog, was cross-compiled for
+ the processors used in Android devices and is used unmodified, simplifying
+ the development of new features.
+\end_layout
+
+\begin_layout Plain Layout
+The App consists of a user-interface, implemented in Java, using the Android
+ APIs, and a system package consisting of the cross-compiled Chemlogic code,
+ and its dependencies.
+\end_layout
+
+\begin_layout Subsubsection
+The Implementation of the User Interface and the System Package
+\end_layout
+
+\begin_layout Plain Layout
+The user interface renders the design of the app (textboxes, buttons, etc.),
+ verifies the input to ensure that it does not contain invalid Prolog syntax
+ and then communicates with Chemlogic through a UNIX pipe.
+ Upon receiving the response, it renders the formatting of the result (e.g.
+ subscripts, arrows and colored error messages) and displays it.
+ The user interface also adds an extra row of keys to the keyboard which
+ contains symbols commonly used in chemical equations and formulas.
+\end_layout
+
+\begin_layout Plain Layout
+The system package, which is approximately 4 MB in size, contains a copy
+ of Chemlogic, compiled as a stand-alone application (meaning that it includes
+ the Prolog interpreter in its binary), some required Linux libraries and
+ an initialization script.
+ When loaded, the App interface executes the initialization script, which
+ starts Chemlogic by running the dynamic linker to locate and link Chemlogic
+ with the provided libraries and then executes it.
+ The cross-compilation process required to build the system package is extremely
+ complicated, so it has been automated to reduce developer work and eliminate
+ errors.
+ Because the Android platform does not install the assets provided with
+ the App, a procedure was implemented that verifies whether latest version
+ of the system package is present and will extract the files and install
+ them, if necessary.
+\end_layout
+
+\begin_layout Plain Layout
+Once Chemlogic is installed and started, the user interface writes a command
+ to the pipe, when Chemlogic reads.
+ Chemlogic writes its answer to the pipe, which the interface reads.
+ This method could be replaced with bindings between Prolog and Java, which
+ would simplify the development of the App, but would increase the complexity
+ of the cross-compilation process.
+\end_layout
+
+\begin_layout Subsubsection
+Interprocess Communication in the App 
+\end_layout
+
+\begin_layout Plain Layout
+When a user interacts with a command-line program, patterns are recognized
+ by both the human user and the program itself: When the user enters a command,
+ he presses ENTER.
+ Now the system sees that the user has finished typing and it processes
+ the input and displays its response.
+ When the interactive prompt is displayed, the user sees that the system
+ is ready to receive another query.
+ The user interface and the Android App use these patterns, as well, allowing
+ existing code to be used with minor modifications.
+\end_layout
+
 \end_inset
 
 
