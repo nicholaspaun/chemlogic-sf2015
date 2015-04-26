@@ -1,0 +1,262 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Just be Yourself!
+\end_layout
+
+\begin_layout Section
+Vitamin A
+\end_layout
+
+\begin_layout Standard
+I am a graduating student at Mount Sentinel Secondary School in South Slocan,
+ located in the West Kootenay region of BC.
+ I am passionate about science, and computer science, in particular.
+ I greatly enjoy scientific research and I plan to pursue a career in academia.
+\end_layout
+
+\begin_layout Standard
+---
+\end_layout
+
+\begin_layout Standard
+I am a graduating student at Mount Sentinel Secondary School in South Slocan,
+ located in the West Kootenay region of BC.
+ I am passionate about science, and computer science, in particular.
+ 
+\end_layout
+
+\begin_layout Itemize
+One of my passions is scientific research.
+\end_layout
+
+\begin_layout Itemize
+I am passionate about scientific research, particularly in the field of
+ computer science.
+\end_layout
+
+\begin_layout Itemize
+*I am greatly interested in scientific research, particularly in the field
+ of computer science, and I plan to pursue a career in academic research.
+\end_layout
+
+\begin_layout Itemize
+*I am passionate about science, and computer science in particular, and
+ I plan to pursue a career in academic research.
+\end_layout
+
+\begin_layout Itemize
+*I am passionate about science, and computer science in particular, and
+ am greatly interested in developing research projects.
+\end_layout
+
+\begin_layout Section
+Vitamin B
+\end_layout
+
+\begin_layout Standard
+I am a graduating student at Mount Sentinel Secondary School in South Slocan,
+ BC.
+ I am passionate about science, and computer science in particular, and
+ am greatly interested in developing research projects.
+ I plan to obtain a degree in Computer Science or Software Engineering,
+ and to pursue studies at the graduate level.
+ This year, I received the BC Innovation Council Scholarship and was nominated
+ for the Schulich Leaders Scholarship.
+ Hiking in the beautiful mountains of the Kootenay region, photography and
+ traveling are some of my favorite activities.
+\end_layout
+
+\begin_layout Standard
+The original version of my project, Chemlogic, was an experimental program
+ I developed three years ago to simplify my Science homework.
+ I decided to extend the project and study Computer Science, by analyzing
+ algorithms and developing new features for Chemlogic.
+ Last year, I received a Bronze Excellence Award at the CWSF.
+ I hope to continue to develop Chemlogic further, but I am also interested
+ in creating new projects and experiments, focusing on the applications
+ of computer science to other scientific fields.
+\end_layout
+
+\begin_layout Itemize
+My project developed far beyond my original expectations.
+ You never know where your research or ideas may take you.
+ The most important thing is to find a problem that interests you.
+ It is very important to approach a problem logically, and understand its
+ theoretical basis.
+ 
+\end_layout
+
+\begin_layout Itemize
+And strive to find the best solution possible for every aspect of the problem.
+\end_layout
+
+\begin_layout Itemize
+The only advice I could give is to find a problem that interests you, and
+ strive to find the best solution possible.
+ You never know where your research or ideas may take you.
+ My project developed far beyond my original expectations.
+ Approaching a problem scientifically, understanding its theoretical basis
+ and analyzing it logically are essential for developing a project.
+\end_layout
+
+\begin_layout Itemize
+I am looking forward, and am very excited to be attending the CWSF in Fredericto
+n.
+\end_layout
+
+\begin_layout Section
+Ascorbic Acid
+\end_layout
+
+\begin_layout Standard
+I am a graduating student at Mount Sentinel Secondary School in South Slocan,
+ BC.
+ I am passionate about science, and computer science in particular, and
+ am greatly interested in developing research projects.
+ I plan to obtain a degree in Computer Science or Software Engineering,
+ and to pursue studies at the graduate level.
+ This year, I received the BC Innovation Council Scholarship and was nominated
+ for the Schulich Leaders Scholarship.
+ Hiking in the beautiful mountains of the Kootenay region, photography and
+ traveling are some of my favorite activities.
+\end_layout
+
+\begin_layout Standard
+The original version of my project, Chemlogic, was an experimental program
+ I developed three years ago to simplify my Science homework.
+ I decided to extend the project and study Computer Science, by analyzing
+ algorithms and developing new features for Chemlogic.
+ Last year, I received a Bronze Excellence Award at the CWSF.
+ I hope to continue to develop Chemlogic further, but I am also interested
+ in creating new projects and experiments, focusing on the applications
+ of computer science to other scientific fields.
+\end_layout
+
+\begin_layout Standard
+The only advice I could give, is to find a problem that interests you, and
+ strive to find the best solution possible.
+ You never know where your research or ideas may take you.
+ My project developed far beyond my original expectations.
+ 
+\end_layout
+
+\begin_layout Standard
+I am looking forward, and am very excited to be attending the CWSF in Fredericto
+n.
+\end_layout
+
+\begin_layout Itemize
+and solve it in a unique way.
+\end_layout
+
+\begin_layout Subsection
+Short 
+\end_layout
+
+\begin_layout Standard
+I am a graduating student at Mount Sentinel Secondary School in South Slocan,
+ BC.
+ I am passionate about science, and computer science in particular, and
+ am very interested in research.
+ I plan to obtain a degree in Computer Science or Software Engineering,
+ and to pursue graduate studies.
+ This year, I received the BC Innovation Council Scholarship and was nominated
+ for the Schulich Leaders Scholarship.
+ Hiking in the beautiful mountains of the Kootenays is one of my favorite
+ activities.
+\end_layout
+
+\begin_layout Standard
+The original version of my project, Chemlogic, was an experimental program
+ I developed three years ago to simplify my Science homework.
+ I decided to extend the project and study computer science, by analyzing
+ algorithms and developing new features.
+ Last year, I received a Bronze Excellence Award at the CWSF.
+ I hope to develop Chemlogic further, but I am also interested in creating
+ new projects, focusing on the applications of computer science to other
+ scientific fields.
+\end_layout
+
+\begin_layout Standard
+My only advice is to find a problem that interests you, and solve it in
+ a unique way.
+ You never know where your research and ideas may take you -- my project
+ developed far beyond my original expectations.
+ 
+\end_layout
+
+\begin_layout Standard
+I'm very excited to be attending the CWSF in Fredericton.
+\end_layout
+
+\end_body
+\end_document
