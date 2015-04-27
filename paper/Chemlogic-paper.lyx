@@ -666,14 +666,6 @@ When a user interacts with a command-line program, patterns are recognized
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
 \noun on
 Metaprogramming is an excellent feature in Prolog
 \noun default
