@@ -570,6 +570,8 @@ The Android App was developed
  The user interface communicates with Chemlogic through a UNIX pipe.
  Upon receiving the solution from Chemlogic, the interface renders the formattin
 g of the result and displays it.
+ Using the existing, unmodified code of Chemlogic in the app simplifies
+ the maintenance of the program and the development of new features.
 \end_layout
 
 \begin_layout Standard
