@@ -552,6 +552,24 @@ Multiple interfaces are supported
  allows each parser to automatically use the correct symbols.
  The error handling module re-throws its syntax errors to a simple error
  handler for each interface.
+\begin_inset Newline newline
+\end_inset
+
+
+\noun on
+
+\begin_inset Newline newline
+\end_inset
+
+The Android App was developed
+\noun default
+ to make Chemlogic available to more users as a study tool.
+ The App consists of a user-interface, implemented in Java, using the Android
+ APIs, and a system package consisting of the cross-compiled code of Chemlogic
+ and its dependencies.
+ The user interface communicates with Chemlogic through a UNIX pipe.
+ Upon receiving the solution from Chemlogic, the interface renders the formattin
+g of the result and displays it.
 \end_layout
 
 \begin_layout Standard
@@ -573,7 +591,7 @@ The Chemlogic App for Android was developed to allow users to use the program
 s, this improvement greatly increases the number of users who would use
  the program and enables students to easily use Chemlogic as a study tool
  for chemistry classes.
- 
+ (OK)
 \end_layout
 
 \begin_layout Plain Layout
@@ -586,6 +604,7 @@ The existing code of Chemlogic, written in Prolog, was cross-compiled for
 The App consists of a user-interface, implemented in Java, using the Android
  APIs, and a system package consisting of the cross-compiled Chemlogic code,
  and its dependencies.
+ (OK)
 \end_layout
 
 \begin_layout Subsubsection
@@ -598,8 +617,8 @@ The user interface renders the design of the app (textboxes, buttons, etc.),
  and then communicates with Chemlogic through a UNIX pipe.
  Upon receiving the response, it renders the formatting of the result (e.g.
  subscripts, arrows and colored error messages) and displays it.
- The user interface also adds an extra row of keys to the keyboard which
- contains symbols commonly used in chemical equations and formulas.
+ (OK) The user interface also adds an extra row of keys to the keyboard
+ which contains symbols commonly used in chemical equations and formulas.
 \end_layout
 
 \begin_layout Plain Layout
