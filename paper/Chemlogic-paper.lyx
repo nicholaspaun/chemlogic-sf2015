@@ -380,7 +380,20 @@ n of the equation in order to provide useful information.
 \noun on
 Reaction type analysis
 \noun default
- is implemented by 
+ is implemented by syntactically unifying the Abstract Syntax Tree generated
+ by parsing an equation with a template representing a certain type of chemical
+ reaction.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Talk about what syntactic unification is, exactly.
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
