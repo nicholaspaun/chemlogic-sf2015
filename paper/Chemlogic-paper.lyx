@@ -217,6 +217,24 @@ NEEDS TO BE RENEWED
  in Prolog to create a program that could be useful in education.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The goal was to extend the program to improve its applicability to education,
+ while maintaining the existing structure.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 Design and Implementation
 \end_layout
