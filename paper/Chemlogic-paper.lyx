@@ -563,15 +563,34 @@ Multiple interfaces are supported
 
 The Android App was developed
 \noun default
- to make Chemlogic available to more users as a study tool.
+ to make Chemlogic available as a study tool to more users.
  The App consists of a user-interface, implemented in Java, using the Android
- APIs, and a system package consisting of the cross-compiled code of Chemlogic
+ APIs, and a package consisting of the cross-compiled code of Chemlogic
  and its dependencies.
- The user interface communicates with Chemlogic through a UNIX pipe.
+ 
+\end_layout
+
+\begin_layout Standard
+The user interface communicates with Chemlogic through a UNIX pipe.
  Upon receiving the solution from Chemlogic, the interface renders the formattin
 g of the result and displays it.
- Using the existing, unmodified code of Chemlogic in the app simplifies
- the maintenance of the program and the development of new features.
+ 
+\end_layout
+
+\begin_layout Standard
+The Chemlogic package contains a copy of the Chemlogic command-line interface,
+ compiled as a stand-alone application with an embedded Prolog interpreter
+ in its binary, some necessary Linux libraries and an initialization script.
+ As cross-compiling these programs for various Android platforms and CPU
+ architectures is a complicated process, an automated procedure is used
+ to build the package, in order to reduce errors.
+ 
+\end_layout
+
+\begin_layout Standard
+When loaded, the App interface executes the initialization script, which
+ runs the dynamic linker to locate and link Chemlogic with the provided
+ libraries and then executes it.
 \end_layout
 
 \begin_layout Standard
@@ -580,6 +599,11 @@ status open
 
 \begin_layout Plain Layout
 Android NOTES
+\end_layout
+
+\begin_layout Plain Layout
+Using the existing, unmodified code of Chemlogic in the App simplifies the
+ maintenance of the program and the development of new features.
 \end_layout
 
 \begin_layout Subsubsection
@@ -600,6 +624,7 @@ s, this improvement greatly increases the number of users who would use
 The existing code of Chemlogic, written in Prolog, was cross-compiled for
  the processors used in Android devices and is used unmodified, simplifying
  the development of new features.
+ (OK)
 \end_layout
 
 \begin_layout Plain Layout
@@ -621,6 +646,7 @@ The user interface renders the design of the app (textboxes, buttons, etc.),
  subscripts, arrows and colored error messages) and displays it.
  (OK) The user interface also adds an extra row of keys to the keyboard
  which contains symbols commonly used in chemical equations and formulas.
+ (DK)
 \end_layout
 
 \begin_layout Plain Layout
@@ -628,16 +654,17 @@ The system package, which is approximately 4 MB in size, contains a copy
  of Chemlogic, compiled as a stand-alone application (meaning that it includes
  the Prolog interpreter in its binary), some required Linux libraries and
  an initialization script.
- When loaded, the App interface executes the initialization script, which
- starts Chemlogic by running the dynamic linker to locate and link Chemlogic
- with the provided libraries and then executes it.
- The cross-compilation process required to build the system package is extremely
- complicated, so it has been automated to reduce developer work and eliminate
- errors.
+ (OK) When loaded, the App interface executes the initialization script,
+ which starts Chemlogic by running the dynamic linker to locate and link
+ Chemlogic with the provided libraries and then executes it.
+ (OK) The cross-compilation process required to build the system package
+ is extremely complicated, so it has been automated to reduce developer
+ work and eliminate errors.
  Because the Android platform does not install the assets provided with
  the App, a procedure was implemented that verifies whether latest version
  of the system package is present and will extract the files and install
  them, if necessary.
+ (DK)
 \end_layout
 
 \begin_layout Plain Layout
@@ -647,6 +674,7 @@ Once Chemlogic is installed and started, the user interface writes a command
  This method could be replaced with bindings between Prolog and Java, which
  would simplify the development of the App, but would increase the complexity
  of the cross-compilation process.
+ (DK)
 \end_layout
 
 \begin_layout Subsubsection
@@ -663,6 +691,7 @@ When a user interacts with a command-line program, patterns are recognized
  is ready to receive another query.
  The user interface and the Android App use these patterns, as well, allowing
  existing code to be used with minor modifications.
+ (DK)
 \end_layout
 
 \end_inset
