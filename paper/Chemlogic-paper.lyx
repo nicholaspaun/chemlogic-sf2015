@@ -196,7 +196,18 @@ Background
 \begin_layout Standard
 
 \noun on
-In high school Chemistry
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+NEEDS TO BE RENEWED
+\end_layout
+
+\end_inset
+
+ In high school Chemistry
 \noun default
 , students learn to write formulas and names for chemical compounds and
  to write and balance chemical equations.
@@ -1165,6 +1176,19 @@ $
 \end_inset
 
  References
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TWIDDLE THE REFS.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
