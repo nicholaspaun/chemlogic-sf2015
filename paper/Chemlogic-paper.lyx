@@ -380,7 +380,7 @@ n of the equation in order to provide useful information.
 \noun on
 Reaction type analysis
 \noun default
- is implemented by matching
+ is implemented by 
 \end_layout
 
 \begin_layout Standard
@@ -864,9 +864,9 @@ The parsers currently implemented in Chemlogic process user input directly,
  Using new features available in version 7 of SWI-Prolog, a simple and fast
  procedure could be implemented to separate user input into space-delimited
  parts.
- Prolog's pattern matching capabilities could then easily be used to determine
- the correct parser for the given input, which would significantly reduce
- the number of tests and operations required to perform parsing.
+ The correct parser for the tokenized input could then be easily identified
+ by syntactic unification, significantly reducing the number of tests and
+ operations required to perform parsing.
 \end_layout
 
 \begin_layout Standard
