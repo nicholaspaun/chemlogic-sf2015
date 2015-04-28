@@ -294,7 +294,7 @@ To make a useful program, it is not enough to simply decide whether or not
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Itemize
 Explain how ASTs are the basis of all of Chemlogic's features and how features
@@ -322,7 +322,7 @@ Conversion between multiple representations is made through ASTs.
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Reaction type analysis in Chemlogic is divided into 2 parts: completing
@@ -373,6 +373,14 @@ n of the equation in order to provide useful information.
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\noun on
+Reaction type analysis
+\noun default
+ is implemented by matching
 \end_layout
 
 \begin_layout Standard
@@ -1126,7 +1134,7 @@ Each module of Chemlogic
 \noun default
  is designed to transform the standardized Abstract Syntax Trees generated
  by the parsers, allowing for modules to be composed together, each adding
- a piece of functionality as structures are passed from procedure to procedure.
+ a piece of functionality as structures are passed from predicate to predicate.
  In this way, existing modules can make use of new functionality, new features
  can be implemented based on existing calculations and structures and modules
  can be connected to as part of integrated user interfaces.
