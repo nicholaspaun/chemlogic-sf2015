@@ -594,6 +594,14 @@ The Chemlogic package contains a copy of the Chemlogic command-line interface,
  When loaded, the App executes the initialization script, which runs the
  dynamic linker to locate and link Chemlogic with the provided libraries
  and then executes it.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
