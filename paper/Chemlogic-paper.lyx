@@ -866,10 +866,12 @@ status open
 
 \begin_layout Itemize
 Briefly, why Prolog was chosen.
+ (SHT)
 \end_layout
 
 \begin_layout Itemize
 New pieces fit together well in the modular structure.
+ (OK)
 \end_layout
 
 \begin_layout Itemize
@@ -885,11 +887,16 @@ This allowed new features to be integrated into the system and to be used
 \begin_layout Itemize
 The existing design of Chemlogic was very flexible and did not require much
  rewriting.
+ (OK)
 \end_layout
 
 \begin_layout Itemize
 Most changes consisted of modifying the parsers to expose more information
  to other parts of the program.
+\end_layout
+
+\begin_layout Itemize
+Composable.
 \end_layout
 
 \begin_layout Itemize
@@ -902,6 +909,7 @@ Running the original cross-compiled code of Chemlogic on the Android platform
  and communicating over Unix pipes allowed the entire capabilities of Chemlogic
  to be made available on the Android platform, without platform-specific
  modifications.
+ (DK)
 \end_layout
 
 \begin_deeper
@@ -910,6 +918,7 @@ Running the original cross-compiled code of Chemlogic on the Android platform
  and communicating over Unix pipes allowed new features and bugfixes to
  be easily transferred to the Android platform, without requiring customized
  modifications.
+ (DK)
 \end_layout
 
 \end_deeper
@@ -990,6 +999,12 @@ REDO
 \end_inset
 
 
+\noun on
+New features were integrated
+\noun default
+ into the existing structure of Chemlogic, without requiring significant
+ rewriting of the code.
+ 
 \begin_inset Newline newline
 \end_inset
 
