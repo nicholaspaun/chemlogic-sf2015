@@ -567,11 +567,7 @@ The Android App was developed
  The App consists of a user-interface, implemented in Java, using the Android
  APIs, and a package consisting of the cross-compiled code of Chemlogic
  and its dependencies.
- 
-\end_layout
-
-\begin_layout Standard
-The user interface communicates with Chemlogic through a UNIX pipe.
+ The user interface communicates with Chemlogic through a UNIX pipe.
  Upon receiving the solution from Chemlogic, the interface renders the formattin
 g of the result and displays it.
  
@@ -584,13 +580,9 @@ The Chemlogic package contains a copy of the Chemlogic command-line interface,
  As cross-compiling these programs for various Android platforms and CPU
  architectures is a complicated process, an automated procedure is used
  to build the package, in order to reduce errors.
- 
-\end_layout
-
-\begin_layout Standard
-When loaded, the App interface executes the initialization script, which
- runs the dynamic linker to locate and link Chemlogic with the provided
- libraries and then executes it.
+ When loaded, the App executes the initialization script, which runs the
+ dynamic linker to locate and link Chemlogic with the provided libraries
+ and then executes it.
 \end_layout
 
 \begin_layout Standard
