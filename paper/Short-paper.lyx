@@ -540,8 +540,6 @@ Developing a feature to automatically generate and mark random chemistry
  The reaction type, equation, formula and name grammars in Chemlogic could
  be extended to produce random valid structures, in addition to simply recognizi
 ng and converting them.
- These structures could then be included in problems presented by a new
- user interface.
 \end_layout
 
 \begin_layout Section*
