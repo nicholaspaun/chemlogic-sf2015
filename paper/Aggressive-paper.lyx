@@ -497,7 +497,7 @@ Each module of Chemlogic
  by the parsers, allowing for modules to be composed together, each adding
  a piece of functionality as structures are passed from predicate to predicate.
  In this way, existing modules can make use of new functionality, new features
- can be implemented based on existing calculations and structures and modules
+ can be implemented based on existing calculations and structures, and modules
  can be connected to as part of integrated user interfaces.
  Most of the changes required to existing code to enable the development
  of new features, consisted of modifying parsers and other procedures to
