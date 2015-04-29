@@ -300,9 +300,6 @@ Once the reaction type is determined, a prediction can be made as to whether
  The reaction type and the reaction prediction can then be displayed by
  the user interfaces, as additional information for the entered chemical
  equation.
- If the reaction type cannot be identified, the reaction prediction is inconsist
-ent, or an element cannot be found in the reactivity series, the program
- will refrain from making a prediction.
 \end_layout
 
 \begin_layout Standard
@@ -337,14 +334,9 @@ key "sandner2008bc"
 
 \end_inset
 
- This process cannot easily be used in a program because it is unsystematic:
- as coefficients may be corrected again during the balancing, the order
- and steps performed may vary from equation to equation.
-\end_layout
-
-\begin_layout Standard
-Chemlogic uses an efficient algorithm, representing a chemical equation
- as a system of linear equations.
+ This process cannot easily be used in a program because it is unsystematic.
+ Instead, Chemlogic uses an efficient algorithm, representing a chemical
+ equation as a system of linear equations.
  One linear equation is created for every element in a chemical equation,
  with the number of occurrences of the element in each formula representing
  a coefficient, multiplied by an unknown (the chemical equation coefficient).
@@ -354,8 +346,7 @@ key "tuckerman:nyu"
 
 \end_inset
 
- To make the system solvable, the first coefficient is set to 1.
- The solution is always reduced to lowest whole number terms.
+
 \end_layout
 
 \begin_layout Standard
@@ -425,24 +416,6 @@ Syntax errors
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\noun on
-Multiple interfaces are supported
-\noun default
- in Chemlogic.
- Currently, Android, command-line and Web interfaces have been implemented.
- In order to show correct symbols and formatting (e.g.
- subscripts) in each interface, there is an output formatting module that
- allows each parser to automatically use the correct symbols.
- The error handling module re-throws its syntax errors to a simple error
- handler for each interface.
-\begin_inset Newline newline
-\end_inset
-
-
 \noun on
 
 \begin_inset Newline newline
@@ -470,24 +443,6 @@ The Chemlogic package contains a copy of the Chemlogic command-line interface,
  When loaded, the App executes the initialization script, which starts Chemlogic
  by running the dynamic linker to locate and link Chemlogic with the provided
  libraries.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\noun on
-Metaprogramming is an excellent feature in Prolog
-\noun default
-.
- This concept allows a program to write or manipulate parts of itself.
- In Chemlogic, metaprogramming is used to translate facts from a database
- into grammatical rules, to simplify code by extending Prolog to define
- new operators, and to develop a simple Domain Specific Language.
- These uses are discussed in more detail in the first edition of this paper.
- 
 \end_layout
 
 \begin_layout Section*
