@@ -476,15 +476,7 @@ Syntactic unification is the process of combining two structures by replacing
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
 \noun on
-
-\begin_inset Newline newline
-\end_inset
-
 Balancing of chemical equations
 \noun default
  is usually done by inspection.
@@ -642,13 +634,23 @@ Unlike the interfaces for balancing and converting formulas to names, which
  the correct queries to send to the API.
 \end_layout
 
+\begin_layout Plain Layout
+Stoichiometry is an important new feature of Chemlogic.
+ The program can now be used to perform a variety of complex calculations
+ involving quantities of chemicals involved reactions.
+ 
+\end_layout
+
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
+\noun on
+Stoichiometry is an important new feature
+\noun default
+ of Chemlogic.
+ The program can now be used to perform a variety of complex calculations
+ involving quantities of chemicals in a reaction.
+ 
 \begin_inset Newline newline
 \end_inset
 
