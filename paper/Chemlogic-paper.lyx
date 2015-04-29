@@ -383,9 +383,65 @@ The reaction type analysis module
  identifies common types of chemical reactions, predicts whether a reaction
  will take place, and completes chemical equations for common reactions,
  given the reactants.
- This feature is implemented by unifying the Abstract Syntax Tree generated
- by parsing an equation, with a template representing the structure of a
- certain type of chemical reaction.
+ These features are implemented by matching the Abstract Syntax Tree generated
+ by parsing an equation, against a pattern representing the structure of
+ a certain type of chemical reaction.
+ In Prolog, syntactic unification is used to match patterns in structures.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Explain syntactic unification
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Syntactic unification is the process of unifying two structures by subsituting
+ variables with constant terms.
+\end_layout
+
+\begin_layout Plain Layout
+Syntactic unification is the process of combining two structures by replacing
+ variables according to the structure.
+\end_layout
+
+\begin_layout Plain Layout
+Syntactic unificiation is, simply, the process 
+\end_layout
+
+\begin_layout Plain Layout
+In Prolog, pattern matching is performed by syntactic unification, 
+\end_layout
+
+\begin_layout Plain Layout
+Syntactic unification is the process of substituting constant terms for
+ variables in order to make two structures equal.
+\end_layout
+
+\begin_layout Plain Layout
+Syntactic unification is 
+\end_layout
+
+\begin_layout Plain Layout
+In Prolog, syntactic unification is used to match patterns in structures
+ by substituting variables in structures so as to make the two structures
+ equal.
+\end_layout
+
+\begin_layout Plain Layout
+Syntactic unification is the process of combining two structures by replacing
+ variables with constant terms, so as to make the two structures equal.
+\end_layout
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
