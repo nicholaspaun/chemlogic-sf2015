@@ -206,6 +206,20 @@ In high school Chemistry
  in Prolog to create a program that could be useful in education.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+FOOTNOTE: For more details on the concepts implemented last year, please
+ refer to the first edition paper.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 Design and Implementation
 \end_layout
