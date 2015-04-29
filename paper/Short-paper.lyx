@@ -219,12 +219,7 @@ User input is parsed
  A parser recognizes a formal grammar describing valid user input.
  In Prolog, parsers are implemented using DCGs (Definite Clause Grammars),
  which provide a simplified syntax for creating logical clauses that process
- a grammar using difference lists, an efficient representation (e.g.
- concatenation in 
-\begin_inset Formula $\mathrm{O}(1)$
-\end_inset
-
-).
+ a grammar using difference lists, an efficient representation.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "triska:dcg"
