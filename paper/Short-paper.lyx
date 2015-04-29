@@ -437,9 +437,6 @@ g of the result and displays it.
 The Chemlogic package contains a copy of the Chemlogic command-line interface,
  compiled as a stand-alone application with an embedded Prolog interpreter
  in its binary, some necessary Linux libraries and an initialization script.
- As cross-compiling these programs for various Android platforms and CPU
- architectures is a complicated process, an automated procedure is used
- to build the package, to reduce errors.
  When loaded, the App executes the initialization script, which starts Chemlogic
  by running the dynamic linker to locate and link Chemlogic with the provided
  libraries.
@@ -488,7 +485,7 @@ Further research and development
 
 \begin_layout Standard
 Developing a feature to automatically generate and mark random chemistry
- problems, for student review and test creation, would be an important extension
+ problems for student review and test creation, would be an important extension
  to Chemlogic.
  With the addition of reaction type analysis, the preliminary development
  for this feature has been completed.
