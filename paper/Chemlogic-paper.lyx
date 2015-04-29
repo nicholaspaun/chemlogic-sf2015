@@ -373,32 +373,28 @@ n of the equation in order to provide useful information.
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\noun on
-Reaction type analysis
-\noun default
- is implemented by syntactically unifying the Abstract Syntax Tree generated
- by parsing an equation, with a template representing a certain type of
- chemical reaction.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Talk about what syntactic unification is, exactly.
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \begin_layout Standard
 
 \noun on
+The reaction type analysis module
+\noun default
+ identifies common types of chemical reactions, predicts whether a reaction
+ will take place, and completes chemical equations for common reactions,
+ given the reactants.
+ This feature is implemented by unifying the Abstract Syntax Tree generated
+ by parsing an equation, with a template representing the structure of a
+ certain type of chemical reaction.
+\begin_inset Newline newline
+\end_inset
+
+
+\noun on
+
+\begin_inset Newline newline
+\end_inset
+
 Balancing of chemical equations
 \noun default
  is usually done by inspection.
@@ -909,7 +905,7 @@ Conclusions
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Itemize
 Briefly, why Prolog was chosen.
