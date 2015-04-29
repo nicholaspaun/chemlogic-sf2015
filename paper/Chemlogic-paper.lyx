@@ -385,7 +385,7 @@ The reaction type analysis module
  given the reactants.
  These features are implemented by matching the Abstract Syntax Tree generated
  by parsing an equation, against a pattern representing the structure of
- a certain type of chemical reaction.
+ a certain chemical reaction type.
  
 \begin_inset Note Note
 status collapsed
@@ -403,16 +403,15 @@ The re-arrangements that occur
 \end_layout
 
 \begin_layout Standard
-Once the type of reaction is determined, a prediction can be made as to
- whether the reaction will occur by comparing the relative positions in
- the reactivity series of the elements involved in the reaction.
- If an element cannot be found in the reactivity series, or if there is
- a conflict between the tendency to react of one pair of elements and the
- tendency to react of another pair of elements, the program will simply
- refrain from making a prediction.
- The type of reaction and the reaction prediction can then be displayed
- by the user interfaces, as additional information for the entered chemical
+Once the reaction type is determined, a prediction can be made as to whether
+ the reaction will occur by comparing the relative positions in the reactivity
+ series of the elements involved.
+ The reaction type and the reaction prediction can then be displayed by
+ the user interfaces, as additional information for the entered chemical
  equation.
+ If the reaction type cannot be identified, the reaction prediction is inconsist
+ent, or an element cannot be found in the reactivity series, the program
+ will refrain from making a prediction.
 \end_layout
 
 \begin_layout Standard
@@ -426,9 +425,13 @@ To complete a chemical equation, simply determining the reaction type is
  becomes the subscript of the anion, and vice-versa, then the formula is
  reduced to lowest terms.
  The complete formulas are then substituted into the equation structure,
- to produce the representation of the complete chemical equation.
+ to produce a complete chemical equation.
  This structure can then be used as input by other modules, such as the
  chemical equation balancer.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -479,7 +482,7 @@ Syntactic unification is the process of combining two structures by replacing
 \noun on
 Balancing of chemical equations
 \noun default
- is usually done by inspection.
+ is usually performed by inspection.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sandner2008bc"
@@ -492,7 +495,8 @@ key "sandner2008bc"
 \end_layout
 
 \begin_layout Standard
-Chemlogic uses an elegant process, using a system of linear equations.
+Chemlogic uses an efficient algorithm, representing a chemical equation
+ as a system of linear equations.
  One linear equation is created for every element in a chemical equation,
  with the number of occurrences of the element in each formula representing
  a coefficient, multiplied by an unknown (the chemical equation coefficient).
@@ -507,11 +511,7 @@ key "tuckerman:nyu"
 \end_layout
 
 \begin_layout Standard
-This process can be made even simpler to program by creating a homogeneous
- linear system, where the terms representing reactants have positive sign
- and terms representing products have negative sign.
- These equations are all equal to 0.
- These systems are commonly solved by converting them to a matrix and applying
+These systems are commonly solved by converting them to a matrix and applying
  Gaussian elimination.
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -519,11 +519,7 @@ key "eigenstate:chembalancerjs"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-In Chemlogic, a matrix is produced from structures created by the parser
+ In Chemlogic, a matrix is produced from structures created by the parser
  and lookup tables.
  The matrix is converted into a system of linear equations, which is then
  provided to the built-in CLP(q) facility, which can solve constraints over
@@ -534,8 +530,11 @@ key "holzbaur:clpq"
 
 \end_inset
 
- This process is less efficient, but allows for code reuse, saving programmer
- work.
+
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -645,6 +644,10 @@ Stoichiometry is an important new feature of Chemlogic.
 
 
 \noun on
+
+\begin_inset Newline newline
+\end_inset
+
 Stoichiometry is an important new feature
 \noun default
  of Chemlogic.
@@ -653,6 +656,9 @@ Stoichiometry is an important new feature
  The process of performing calculations begins by parsing a chemical equation
  that includes quantities for some compounds.
  A parser is also used to interpret the queries provided by the user.
+\begin_inset Newline newline
+\end_inset
+
  
 \begin_inset Note Note
 status open
@@ -699,7 +705,7 @@ Syntax errors
  of an error is necessary.
  When a predicate that must succeed for a given input to be valid fails,
  a syntax error exception is thrown, containing a code name for the error
- and whatever remains in the tail (what could not be parsed).
+ and the remaining unparsed input (within the tail).
  The exception aborts the execution of the program and is then passed to
  the error handling module.
  It first attempts to localize the error by highlighting only the problematic
@@ -738,7 +744,7 @@ Multiple interfaces are supported
 
 The Android App was developed
 \noun default
- to make Chemlogic available as a study tool to more users.
+ to make Chemlogic more readily available as a study tool.
  The App consists of a user-interface, implemented in Java, using the Android
  APIs, and a package consisting of the cross-compiled code of Chemlogic
  and its dependencies.
@@ -754,10 +760,10 @@ The Chemlogic package contains a copy of the Chemlogic command-line interface,
  in its binary, some necessary Linux libraries and an initialization script.
  As cross-compiling these programs for various Android platforms and CPU
  architectures is a complicated process, an automated procedure is used
- to build the package, in order to reduce errors.
- When loaded, the App executes the initialization script, which runs the
- dynamic linker to locate and link Chemlogic with the provided libraries
- and then executes it.
+ to build the package, to reduce errors.
+ When loaded, the App executes the initialization script, which starts Chemlogic
+ by running the dynamic linker to locate and link Chemlogic with the provided
+ libraries.
 \begin_inset Newline newline
 \end_inset
 
@@ -876,47 +882,12 @@ When a user interacts with a command-line program, patterns are recognized
 Metaprogramming is an excellent feature in Prolog
 \noun default
 .
- Metaprogramming allows a program to write or manipulate parts of itself.
- An important aspect of metaprogramming is the ability to manipulate code
- as a data structure --- this is used to translate simple facts from a database
- into various grammatical rules.
+ This concept allows a program to write or manipulate parts of itself.
+ In Chemlogic, metaprogramming is used to translate facts from a database
+ into grammatical rules, to simplify code by extending Prolog to define
+ new operators, and to develop a simple Domain Specific Language.
+ These uses are discussed in more detail in the first edition of this paper.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-CUT? 
-\end_layout
-
-\end_inset
-
-Prolog also allows a programmer to define new operators that extend the
- programming language and provide simple syntax for repetitive tasks.
- Chemlogic defines an operator that throws a syntax error, if a predicate
- fails, and another operator that catches syntax errors and runs the correct
- handler for the current interface.
- Defining operators makes Chemlogic's code easier to read and understand.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-CUT
-\end_layout
-
-\end_inset
-
- Chemlogic also implements a very simple Domain Specific Language (DSL)
- on top of Prolog, using metaprogramming techniques.
- This DSL is a proof-of-concept and consists of three rules that provide
- simple syntax for a user to query Chemlogic.
- DSL clauses can be composed into very simple programs and the full features
- of Prolog can be combined with DSL rules, if needed.
 \end_layout
 
 \begin_layout Section*
@@ -975,29 +946,7 @@ $$
 
  Further research and development
 \noun default
- --- It would be interesting to compare the balancing algorithm used, with
- one that attempts to balance equations by trial-and-error.
- A brute-force algorithm is logically unsatisfying and its difficulty increases
- exponentially (
-\begin_inset Formula $\mathrm{O}(n^{m})$
-\end_inset
-
-).
- The time taken by repeated trials may be unnoticeable on new computers,
- however.
- 
-\end_layout
-
-\begin_layout Standard
-Currently, Chemlogic attempts to distinguish sub-classes of errors to make
- error messages more specific.
- A topic for future development would be to substitute pieces of information
- from incorrect input into messages, allowing the program to explain exactly
- what is wrong with the input, as opposed to a general error message.
-\end_layout
-
-\begin_layout Standard
-The parsers currently implemented in Chemlogic process user input directly,
+ --- The parsers currently implemented in Chemlogic process user input directly,
  as character lists, without a tokenization process.
  Using new features available in version 7 of SWI-Prolog, a simple and fast
  procedure could be implemented to separate user input into space-delimited
@@ -1008,12 +957,11 @@ The parsers currently implemented in Chemlogic process user input directly,
 \end_layout
 
 \begin_layout Standard
-An important extension to Chemlogic, would be to add support for automatically
- generating and marking random chemistry problems.
- This feature could be used by students to review concepts and by teachers
- to automate the marking of simple problems.
- With the addition of support for reaction type analysis, the preliminary
- work for this feature has been completed.
+Developing a feature to automatically generate and mark random chemistry
+ problems, for student review and test creation, would be an important extension
+ to Chemlogic.
+ With the addition of reaction type analysis, the preliminary development
+ for this feature has been completed.
  The reaction type, equation, formula and name grammars in Chemlogic could
  be extended to produce random valid structures, in addition to simply recognizi
 ng and converting them.
@@ -1136,31 +1084,12 @@ The system is organized such that functionality and algorithms are implemented
 \noun on
 Prolog was chosen
 \noun default
- as the language for Chemlogic because it has many features that are useful
- for implementing this type of program.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-REDO
-\end_layout
-
-\end_inset
-
-Prolog includes support for DCGs, which allow a programmer to implement
- a parser using a very simple syntax, without requiring manual parser writing.
- Using DCGs, it is easy to write grammatical rules, test them and add more
- types of input.
- Chemlogic used many advanced features of DCGs and their underlying abstractions.
-\end_layout
-
-\begin_layout Standard
-SWI-Prolog's CLP(q) facility made solving systems of linear equations extremely
- simple.
+ as the language for Chemlogic because its features make it well suited
+ to writing programs of this type in a simple and efficient way.
+ The built-in Definite Clause Grammars syntax allows a programmer to implement
+ advanced parsers using a very simple syntax, and strong support for metaprogram
+ming allows syntax and code to be simplified in powerful ways.
+ CLP(q), a linear equation solving library, is also included in SWI-Prolog.
 \end_layout
 
 \begin_layout Standard
@@ -1181,24 +1110,11 @@ key "wielemaker:2011:tplp"
 
 \end_inset
 
- In practice, writing in Prolog avoids the need for manual programming of
- loops and other imperative constructs, most often resulting in a well-written,
- succinct solution requiring few lines of code.
-\end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-REDO
-\end_layout
-
+\begin_inset Newline newline
 \end_inset
 
- Prolog also has very strong support for metaprogramming, which was used
- in a few places in Chemlogic, where the amount of boilerplate code needed
- was reduced, making code easier to read.
+
 \begin_inset Newline newline
 \end_inset
 
@@ -1262,10 +1178,6 @@ In this way, existing modules can make use of new functionality, new features
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \noun on
 Each module of Chemlogic
