@@ -267,10 +267,9 @@ Once the reaction type is determined, a prediction can be made as to whether
 \end_layout
 
 \begin_layout Standard
-To complete a chemical equation, simply determining the reaction type is
- insufficient --- the complete formulas of the product compounds must be
- calculated, given the arrangements of elements and ions determined by reaction
- pattern.
+To complete a chemical equation, the complete formulas of the product compounds
+ must be calculated, given the arrangements of elements and ions determined
+ by reaction pattern.
  This process is performed using rules specific to the type of compound
  being formed by the reaction.
  For example, in the case of an ionic compound, the charge of the cation
