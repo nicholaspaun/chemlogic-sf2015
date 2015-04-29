@@ -230,20 +230,7 @@ key "triska:dcg"
 \end_layout
 
 \begin_layout Standard
-
-\emph on
-In DCG clauses, the head of a grammatical rule is unified with the input
- and any remaining data is unified with the tail, which is passed to the
- next clause until the parsing is completed.
- If any clause fails, Prolog will backtrack to find another clause that
- can satisfy the grammar.
- If no clause is found, then the parsing fails.
-\end_layout
-
-\begin_layout Standard
-To make a useful program, it is not enough to simply decide whether or not
- a given input conforms to a grammar --- internal representations must be
- created.
+Internal representations must be created for the parsed input.
  Chemlogic uses a pseudo-Abstract Syntax Tree to record the structure of
  an equation, as well as lists containing useful information (e.g.
  the elements contained in an equation).
@@ -264,16 +251,6 @@ The reaction type analysis module
  These features are implemented by matching the Abstract Syntax Tree generated
  by parsing an equation, against a pattern representing the structure of
  a certain chemical reaction type.
- 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-The re-arrangements that occur
-\end_layout
-
-\end_inset
-
  In Prolog, this matching is performed by syntactic unification, which is
  the process of combining two structures by replacing variables with constant
  terms, so as to make the two structures equal.
