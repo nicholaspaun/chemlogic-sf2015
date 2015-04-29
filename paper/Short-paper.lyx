@@ -230,14 +230,6 @@ key "triska:dcg"
 \end_layout
 
 \begin_layout Standard
-Difference lists consist of an instantiated part (the head) and an uninstantiate
-d part (the tail), which is always paired with the rest of the lists.
- Difference lists are a complex concept and are usually abstracted away
- by DCG syntax.
- 
-\end_layout
-
-\begin_layout Standard
 In DCG clauses, the head of a grammatical rule is unified with the input
  and any remaining data is unified with the tail, which is passed to the
  next clause until the parsing is completed.
@@ -250,11 +242,9 @@ In DCG clauses, the head of a grammatical rule is unified with the input
 To make a useful program, it is not enough to simply decide whether or not
  a given input conforms to a grammar --- internal representations must be
  created.
- Commonly, Abstract Syntax Trees are used for this purpose.
- Chemlogic uses a pseudo-AST to record the structure of an equation, as
- well as lists containing useful information (e.g.
+ Chemlogic uses a pseudo-Abstract Syntax Tree to record the structure of
+ an equation, as well as lists containing useful information (e.g.
  the elements contained in an equation).
- DCGs provide extra arguments for this purpose.
 \begin_inset Newline newline
 \end_inset
 
