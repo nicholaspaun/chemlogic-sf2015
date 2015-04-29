@@ -650,6 +650,43 @@ Stoichiometry is an important new feature
  of Chemlogic.
  The program can now be used to perform a variety of complex calculations
  involving quantities of chemicals in a reaction.
+ The process of performing calculations begins by parsing a chemical equation
+ that includes quantities for some compounds.
+ A parser is also used to interpret the queries provided by the user.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Whenever a quantity is parsed, the number of significant figures in the
+ given value is determined and recorded in the quantity structure.
+\end_layout
+
+\begin_layout Plain Layout
+The stoichiometry modules traverse the abstract syntax tree, converting
+ quantities to the specified units.
+\end_layout
+
+\begin_layout Plain Layout
+Rules are provided to convert values in one unit to another unit, either
+ directly or via conversion to moles.
+\end_layout
+
+\begin_layout Plain Layout
+If more than one quantity is provided in the equation, limiting reactant
+ analysis must be performed to decide which quantity must be used to calculate
+ the results.
+\end_layout
+
+\begin_layout Plain Layout
+The limiting reactant is determined by applying a simple systematic method.
+ The quantity of each reactant is converted to moles and the divided by
+ the equation coefficient of the reactant.
+ The reactant with the lowest value for this ratio is the limiting reactant.
+\end_layout
+
+\end_inset
+
  
 \begin_inset Newline newline
 \end_inset
