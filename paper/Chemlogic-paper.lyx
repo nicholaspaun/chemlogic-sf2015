@@ -386,20 +386,52 @@ The reaction type analysis module
  These features are implemented by matching the Abstract Syntax Tree generated
  by parsing an equation, against a pattern representing the structure of
  a certain type of chemical reaction.
- In Prolog, this matching is performed by syntactic unification, which is
- the process of combining two structures by replacing variables with constant
- terms, so as to make the two structures equal.
  
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
-Explain syntactic unification
+The re-arrangements that occur
 \end_layout
 
 \end_inset
 
+ In Prolog, this matching is performed by syntactic unification, which is
+ the process of combining two structures by replacing variables with constant
+ terms, so as to make the two structures equal.
  
+\end_layout
+
+\begin_layout Standard
+Once the type of reaction is determined, a prediction can be made as to
+ whether the reaction will occur by comparing the relative positions in
+ the reactivity series of the elements involved in the reaction.
+ If an element cannot be found in the reactivity series, or if there is
+ a conflict between the tendency to react of one pair of elements and the
+ tendency to react of another pair of elements, the program will simply
+ refrain from making a prediction.
+ The type of reaction and the reaction prediction can then be displayed
+ by the user interfaces, as additional information for the entered chemical
+ equation.
+\end_layout
+
+\begin_layout Standard
+To complete a chemical equation, simply determining the reaction type is
+ insufficient --- the complete formulas of the product compounds must be
+ calculated, given the arrangements of elements and ions determined by reaction
+ pattern.
+ This process is performed using rules specific to the type of compound
+ being formed by the reaction.
+ For example, in the case of an ionic compound, the charge of the cation
+ becomes the subscript of the anion, and vice-versa, then the formula is
+ reduced to lowest terms.
+ The complete formulas are then substituted into the equation structure,
+ to produce the representation of the complete chemical equation.
+ This structure can then be used as input by other modules, such as the
+ chemical equation balancer.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
