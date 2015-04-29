@@ -386,7 +386,9 @@ The reaction type analysis module
  These features are implemented by matching the Abstract Syntax Tree generated
  by parsing an equation, against a pattern representing the structure of
  a certain type of chemical reaction.
- In Prolog, syntactic unification is used to match patterns in structures.
+ In Prolog, this matching is performed by syntactic unification, which is
+ the process of combining two structures by replacing variables with constant
+ terms, so as to make the two structures equal.
  
 \begin_inset Note Note
 status open
@@ -1343,6 +1345,22 @@ I would also like to thank Mr.
  Jason Peil for his assistance in designing and printing the display, and
  Mr.
  Greg Osadchuk for his input and assistance regarding the visual presentation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Financial and technical of Selkirk College is greatly appreciated.
+ Mr.
+ David Feldman, School Chair of University Arts and Sciences, and Mr.
+ Ian Parfitt, Coordinator of the Selkirk Geospatial Resarch Centre.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
