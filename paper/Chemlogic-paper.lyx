@@ -322,7 +322,7 @@ Conversion between multiple representations is made through ASTs.
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Reaction type analysis in Chemlogic is divided into 2 parts: completing
@@ -381,8 +381,8 @@ n of the equation in order to provide useful information.
 Reaction type analysis
 \noun default
  is implemented by syntactically unifying the Abstract Syntax Tree generated
- by parsing an equation with a template representing a certain type of chemical
- reaction.
+ by parsing an equation, with a template representing a certain type of
+ chemical reaction.
  
 \begin_inset Note Note
 status open
