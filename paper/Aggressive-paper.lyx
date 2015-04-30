@@ -513,6 +513,8 @@ Stoichiometry is an important new feature
  quantities of chemicals in a reaction.
  The process begins by parsing a chemical equation that includes quantities
  for some compounds.
+ Whenever a quantity is parsed, the number of significant figures in the
+ value is determined and recorded in the quantity structure.
  A list of queries for quantities to be determined is also parsed.
  
 \end_layout
