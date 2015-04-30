@@ -260,9 +260,6 @@ To complete a chemical equation, the complete formulas of the product compounds
  by reaction pattern.
  This process is performed using rules specific to the type of compound
  being formed by the reaction.
- For example, in the case of an ionic compound, the charge of the cation
- becomes the subscript of the anion, and vice-versa, then the formula is
- reduced to lowest terms.
  The complete formulas are then substituted into the equation structure,
  to produce a complete chemical equation.
  This structure can then be used as input by other modules, such as the
