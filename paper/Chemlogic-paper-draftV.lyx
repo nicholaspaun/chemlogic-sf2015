@@ -381,6 +381,10 @@ as input for the calculation is determined, the list of queries is traversed,
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
 Syntax errors
 \noun default
  cannot simply cause a program to fail --- clear identification and explanation
