@@ -540,10 +540,18 @@ The Abstract Syntax Tree for the given chemical equation is then traversed
  The limiting reactant always has the lowest value for this ratio.
  If only one quantity is known, it must, logically, be used to perform all
  the calculations.
-\begin_inset Newline newline
-\end_inset
 
+\noun on
+ 
+\end_layout
 
+\begin_layout Standard
+Once the correct quantity to use
+\noun on
+ 
+\noun default
+as input for the calculation is determined, the list of queries is traversed,
+ and the input quantity is converted to each requested output quantity.
 \noun on
 
 \begin_inset Newline newline
