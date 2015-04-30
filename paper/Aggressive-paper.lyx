@@ -546,17 +546,44 @@ The Abstract Syntax Tree for the given chemical equation is then traversed
 \end_layout
 
 \begin_layout Standard
-Once the correct quantity to use
+Once the correct quantity and compound to use
 \noun on
  
 \noun default
 as input for the calculation is determined, the list of queries is traversed,
  and the input quantity is converted to each requested output quantity.
-\noun on
+ This conversion is performed according to the same method that is typically
+ used when performing stoichiometric calculations manually: the input quantity
+ is converted to moles, then moles of the input compound are converted to
+ moles of the requested compound and, finally, moles of the requested compound
+ are converted to the output unit specified by the user.
+ Conversions between units are performed by simple rules, which take into
+ account the maximum number of significant figures that can be yielded by
+ the calculation.
+ When the results of the stoichiometric calculation is displayed to the
+ user, all values are rounded to the correct number of significant figures.
+\end_layout
 
-\begin_inset Newline newline
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+Stoichiometry of excess quantities.
+\end_layout
+
+\begin_layout Itemize
+Some goop about creating an intuitive interface for stoichiometry.
+\end_layout
+
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+
+\noun on
 Syntax errors
 \noun default
  cannot simply cause a program to fail --- clear identification and explanation
