@@ -432,12 +432,13 @@ If there is no limiting reactant, then the moles of the provided compound
 
 \begin_layout Itemize
 Procedures are implemented for performing all of the unit conversions necessary.
- 
+ (OK)
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Support for concentrations of chemicals is implemented.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -448,11 +449,12 @@ Many patterns are supported.
 \begin_layout Itemize
 Chemlogic will always produce results with the correct number of significant
  figures.
- The number of significant figures in each input value is determined and
- recorded.
+ (OK) The number of significant figures in each input value is determined
+ and recorded.
  (OK) Each unit conversion procedure determines the maximum number of significan
 t figures that can be preserved.
- When user output is produced, numbers are rounded to the correct precision.
+ (OK) When user output is produced, numbers are rounded to the correct precision.
+ (OK)
 \end_layout
 
 \begin_layout Itemize
