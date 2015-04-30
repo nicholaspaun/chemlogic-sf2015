@@ -559,6 +559,16 @@ as input for the calculation is determined, the list of queries is traversed,
  is converted to moles, then moles of the input compound are converted to
  moles of the requested compound and, finally, moles of the requested compound
  are converted to the output unit specified by the user.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+PERHAPS TRIMTAB.
+\end_layout
+
+\end_inset
+
  Conversions between units are performed by simple rules, which take into
  account the maximum number of significant figures that can be yielded by
  the calculation.
