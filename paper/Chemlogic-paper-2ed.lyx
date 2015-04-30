@@ -545,8 +545,16 @@ Chemlogic was successfully extended
  to implement new features, based upon the existing modular structure, and
  can now perform stoichiometric calculations, convert chemical quantities
  between units, and complete chemical reactions.
- The balancing and formula to name conversion features were further developed
- and made available in a mobile application for Android.
+ The 
+\emph on
+balancing
+\emph default
+ and 
+\emph on
+formula to name conversion
+\emph default
+ features were further developed and made available in a mobile application
+ for Android.
 \begin_inset CommandInset label
 LatexCommand label
 name "END"
