@@ -385,11 +385,9 @@ Syntax errors
  When a predicate that must succeed for a given input to be valid fails,
  a syntax error exception is thrown, containing a code name for the error
  and the remaining unparsed input (within the tail).
- The exception handler first attempts to localize the error by highlighting
- only the problematic part within the tail, using rules specific to the
- type of the first character.
- The combination of an error code and character type is used to find the
- correct error message to provide to the user.
+ The exception handler attempts to localize the error by highlighting only
+ the erroneous part of the tail, using rules specific to the type of the
+ first character.
 \begin_inset Newline newline
 \end_inset
 
