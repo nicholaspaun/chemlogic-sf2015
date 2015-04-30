@@ -360,7 +360,7 @@ key "holzbaur:clpq"
 \noun default
 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Stoichiometry: 
@@ -467,11 +467,8 @@ Stoichiometry is an important new feature of Chemlogic.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Whenever a quantity is parsed, the number of significant figures in the
@@ -496,36 +493,45 @@ If more than one quantity is provided in the equation, limiting reactant
 
 \begin_layout Plain Layout
 The limiting reactant is determined by applying a simple systematic method.
- The quantity of each reactant is converted to moles and the divided by
- the equation coefficient of the reactant.
+ Each reactant quantity is converted to moles and divided by the equation
+ coefficient.
  The reactant with the lowest value for this ratio is the limiting reactant.
 \end_layout
 
 \end_inset
 
  
+\noun on
+
+\begin_inset Newline newline
+\end_inset
+
+Stoichiometry is an important new feature
+\noun default
+ of Chemlogic.
+ The program can be used to perform a variety of complex calculations involving
+ quantities of chemicals in a reaction.
+ The process of performing calculations begins by parsing a chemical equation
+ that includes quantities for some compounds.
+ A list of queries for quantities to be determined is also parsed.
+\end_layout
+
+\begin_layout Standard
+If more than one quantity is given, the limiting reactant must be determined.
+\end_layout
+
+\begin_layout Standard
+If only one quantity is known, then it must, logically, be used to perform
+ all the calculations.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard
 
 \noun on
-Stoichiometry is an important new feature
-\noun default
- of Chemlogic.
- The program can now be used to perform a variety of complex calculations
- involving quantities of chemicals in a reaction.
- The process of performing calculations begins by parsing a chemical equation
- that includes quantities for some compounds.
- A parser is also used to interpret the queries provided by the user.
-\noun on
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
 Syntax errors
 \noun default
  cannot simply cause a program to fail --- clear identification and explanation
