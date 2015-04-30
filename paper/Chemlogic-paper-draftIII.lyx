@@ -209,6 +209,7 @@ User input is parsed
  In Prolog, parsers are implemented using DCGs (Definite Clause Grammars),
  which provide a simplified syntax for creating logical clauses that process
  a grammar using difference lists, an efficient representation.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "triska:dcg"
@@ -277,6 +278,7 @@ To complete a chemical equation, the complete formulas of the product compounds
 Balancing of chemical equations
 \noun default
  is usually performed by inspection.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sandner2008bc"
@@ -289,6 +291,7 @@ key "sandner2008bc"
  One linear equation is created for every element in a chemical equation,
  with the number of occurrences of the element in each formula representing
  a coefficient, multiplied by an unknown (the chemical equation coefficient).
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "tuckerman:nyu"
@@ -301,6 +304,7 @@ key "tuckerman:nyu"
 \begin_layout Standard
 These systems are commonly solved by converting them to a matrix and applying
  Gaussian elimination.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "eigenstate:chembalancerjs"
@@ -312,6 +316,7 @@ key "eigenstate:chembalancerjs"
  The matrix is converted into a system of linear equations, which is then
  provided to the built-in CLP(q) facility, which can solve constraints over
  rational numbers.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "holzbaur:clpq"
@@ -487,6 +492,7 @@ ming allows syntax and code to be simplified in powerful ways.
  CLP(q), a linear equation solving library, is also included in SWI-Prolog.
  Using a logic programming language, such as Prolog, enables the programmer
  to describe the results, instead of the process.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wielemaker:2011:tplp"
@@ -522,9 +528,11 @@ Each module of Chemlogic
 \noun on
 Chemlogic was successfully extended
 \noun default
- to make the implement new features, based upon the existing well-designed
- and modular structure, and can now perform stoichiometric calculations,
- convert chemical quantities between units, and complete chemical reactions.
+ to implement new features, based upon the existing modular structure, and
+ can now perform stoichiometric calculations, convert chemical quantities
+ between units, and complete chemical reactions.
+ The balancing and formula to name conversion features were made available
+ in a mobile application for Android.
 \begin_inset CommandInset label
 LatexCommand label
 name "END"
