@@ -188,10 +188,8 @@ Background
 \noun on
 In high school Chemistry
 \noun default
-, students learn to write formulas and names for chemical compounds and
- to write and balance chemical equations.
- These concepts are simple, but implementing a program to do this was an
- interesting task.
+, students learn to work with chemical compounds, equations and stoichiometric
+ calculations.
  Algorithms were researched, adapted to chemistry problems and implemented
  in Prolog to create a program that could be useful in education.
 \end_layout
@@ -335,10 +333,8 @@ key "holzbaur:clpq"
 Stoichiometry is an important new feature
 \noun default
  of Chemlogic.
- The program can be used to perform a variety of complex calculations involving
- quantities of chemicals in a reaction.
- The process begins by parsing a chemical equation that includes quantities
- for some compounds.
+ The process of performing stoichiometric calculations begins by parsing
+ a chemical equation that includes quantities for some compounds.
  Whenever a quantity is parsed, the number of significant figures in the
  value is determined and recorded in the quantity structure.
  A list of queries for quantities to be determined is also parsed.
@@ -350,9 +346,9 @@ The Abstract Syntax Tree for the given chemical equation is then traversed
  to determine the number of known quantities.
  If more than one quantity is known, the limiting reactant must be determined
  and used to calculate the results.
- This is performed by converting each known reactant quantity to moles,
- so that the values can be compared, then dividing by the corresponding
- coefficient of the reactant in the equation.
+ This is performed by converting each known reactant quantity to moles (the
+ standard unit for the amount of a chemical substance), then dividing by
+ the corresponding coefficient of the reactant in the equation.
  The limiting reactant always has the lowest value for this ratio.
  If only one quantity is known, it must, logically, be used to perform all
  the calculations.
@@ -368,16 +364,11 @@ Once the correct quantity and compound to use
 \noun default
 as input for the calculation is determined, the list of queries is traversed,
  and the input quantity is converted to each requested output quantity.
- This conversion is performed according to the same method that is typically
- used when performing stoichiometric calculations manually: the input quantity
- is converted to moles, then moles of the input compound are converted to
- moles of the requested compound and, finally, moles of the requested compound
- are converted to the output unit specified by the user.
- Conversions between units are performed by simple rules, which take into
- account the maximum number of significant figures that can be yielded by
- the calculation.
- When the results of the stoichiometric calculation is displayed to the
- user, all values are rounded to the correct number of significant figures.
+ This calculation is performed according to the same method that is typically
+ used when performing stoichiometric calculations manually.
+ Unit conversions are performed by simple calculation rules, which take
+ into account the maximum number of significant figures that can be yielded
+ by the calculation.
 \noun on
 
 \begin_inset Newline newline
@@ -394,13 +385,9 @@ Syntax errors
  When a predicate that must succeed for a given input to be valid fails,
  a syntax error exception is thrown, containing a code name for the error
  and the remaining unparsed input (within the tail).
- The exception aborts the execution of the program and is then passed to
- the error handling module.
- It first attempts to localize the error by highlighting only the problematic
- part within the tail.
- Different rules are used depending on the type of the first character (e.g.
- an invalid letter suggests a chemistry mistake, while an invalid symbol
- suggests a typo).
+ The exception handler first attempts to localize the error by highlighting
+ only the problematic part within the tail, using rules specific to the
+ type of the first character.
  The combination of an error code and character type is used to find the
  correct error message to provide to the user.
 \begin_inset Newline newline
@@ -449,12 +436,6 @@ time/1
 ) used by different algorithms for various problem sizes.
  Algorithms were compared on their fixed inferences (intercept), inferences
  per item (slope) and to ensure that their complexities were not exponential.
-\end_layout
-
-\begin_layout Standard
-The time taken by the algorithms used in Chemlogic could not be analyzed
- because the difference between the performance of algorithms on typical
- problem sizes was immeasurably small.
 \noun on
 
 \begin_inset Newline newline
