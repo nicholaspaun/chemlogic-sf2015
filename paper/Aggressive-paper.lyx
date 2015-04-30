@@ -456,8 +456,16 @@ Further research and development
  as character lists, without a tokenization process.
  Using new features available in version 7 of SWI-Prolog, a simple and fast
  procedure could be implemented to separate user input into space-delimited
- parts, significantly reducing the number of tests and operations required
- to perform parsing.
+ parts, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "swi:doublequote"
+
+\end_inset
+
+ significantly reducing the number of tests and operations required to perform
+ parsing.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -739,7 +747,7 @@ TWIDDLE THE REFS.
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-btprint "btPrintCited"
+btprint "btPrintAll"
 bibfiles "chemlogic"
 options "plainurl"
 
