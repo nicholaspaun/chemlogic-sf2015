@@ -511,27 +511,27 @@ Stoichiometry is an important new feature
  of Chemlogic.
  The program can be used to perform a variety of complex calculations involving
  quantities of chemicals in a reaction.
- The process of performing calculations begins by parsing a chemical equation
- that includes quantities for some compounds.
+ The process begins by parsing a chemical equation that includes quantities
+ for some compounds.
  A list of queries for quantities to be determined is also parsed.
+ 
 \end_layout
 
 \begin_layout Standard
-If more than one quantity is given, the limiting reactant must be determined.
-\end_layout
-
-\begin_layout Standard
-If only one quantity is known, then it must, logically, be used to perform
+The Abstract Syntax Tree for the given chemical equation is then traversed
+ to determine the number of known quantities.
+ If more than one quantity is known, the limiting reactant must be determined.
+ If only one quantity is known, then it must, logically, be used to perform
  all the calculations.
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
 
 \noun on
+
+\begin_inset Newline newline
+\end_inset
+
 Syntax errors
 \noun default
  cannot simply cause a program to fail --- clear identification and explanation
