@@ -191,8 +191,8 @@ In high school Chemistry
 , students learn to work with chemical compounds, equations and stoichiometric
  calculations.
  Algorithms were researched, adapted to chemistry problems and implemented
- in Prolog to develop the program, so that it could be useful to both students
- and teachers.
+ in Prolog, to develop a program that could be used by both students and
+ teachers.
 \end_layout
 
 \begin_layout Section*
@@ -492,7 +492,7 @@ key "swi:doublequote"
 
 \begin_layout Standard
 Developing a feature to automatically generate and mark random chemistry
- problems for student review and test creation, would be an important extension
+ problems for student review and test creation would be an important extension
  to Chemlogic.
  With the addition of reaction type analysis, the preliminary development
  for this feature has been completed.
