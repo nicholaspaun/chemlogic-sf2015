@@ -537,7 +537,7 @@ The Abstract Syntax Tree for the given chemical equation is then traversed
  This is performed by converting each known reactant quantity to moles,
  so that the values can be compared, then dividing by the corresponding
  coefficient of the reactant in the equation.
- The lowest value for this ratio corresponds to the limiting reactant.
+ The limiting reactant always has the lowest value for this ratio.
  If only one quantity is known, it must, logically, be used to perform all
  the calculations.
 \begin_inset Newline newline
