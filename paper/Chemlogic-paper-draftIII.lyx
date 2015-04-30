@@ -191,7 +191,8 @@ In high school Chemistry
 , students learn to work with chemical compounds, equations and stoichiometric
  calculations.
  Algorithms were researched, adapted to chemistry problems and implemented
- in Prolog to create a program that could be useful in education.
+ in Prolog to develop the program, so that it could be useful to both students
+ and teachers.
 \end_layout
 
 \begin_layout Section*
@@ -510,9 +511,6 @@ Each module of Chemlogic
  In this way, existing modules can make use of new functionality, new features
  can be implemented based on existing calculations and structures, and modules
  can be connected to as part of integrated user interfaces.
- Most of the changes required to existing code to enable the development
- of new features, consisted of modifying parsers and other procedures to
- expose more information to other modules of the program.
 \begin_inset Newline newline
 \end_inset
 
@@ -524,9 +522,9 @@ Each module of Chemlogic
 \noun on
 Chemlogic was successfully extended
 \noun default
- to implement new features, based upon the existing well-designed and modular
- structure, and can now perform stoichiometric calculations, convert chemical
- quantities between units and complete chemical reactions.
+ to make the implement new features, based upon the existing well-designed
+ and modular structure, and can now perform stoichiometric calculations,
+ convert chemical quantities between units, and complete chemical reactions.
 \begin_inset CommandInset label
 LatexCommand label
 name "END"
