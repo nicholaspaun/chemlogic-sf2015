@@ -24,7 +24,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize 14
+\paperfontsize 17
 \spacing single
 \use_hyperref false
 \papersize letterpaper
@@ -76,7 +76,7 @@
 \begin_body
 
 \begin_layout Title
-Balancing Chemical Equations
+How Chemlogic Balances an Equation
 \end_layout
 
 \begin_layout Standard
@@ -278,18 +278,18 @@ Equation = [[[[['C'], 1], [['H'], 4]], [[['O'], 2]]], [[[['C'], 1], [['O'],
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $a=1$
+\begin_inset Formula $a=1,$
 \end_inset
 
-, 
-\begin_inset Formula $b=2$
+ 
+\begin_inset Formula $b=2,$
 \end_inset
 
-, 
-\begin_inset Formula $c=1$
+ 
+\begin_inset Formula $c=1,$
 \end_inset
 
-, 
+ 
 \begin_inset Formula $d=2$
 \end_inset
 
