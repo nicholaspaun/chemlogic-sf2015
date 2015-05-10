@@ -1,0 +1,4758 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Chemlogic: Project Notes
+\end_layout
+
+\begin_layout Author
+Nicholas Paun
+\end_layout
+
+\begin_layout Date
+May 7, 2015
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Implementation Notes
+\end_layout
+
+\begin_layout Section
+Input/Output Formatting
+\end_layout
+
+\begin_layout Standard
+The new output formats work almost perfectly.
+\end_layout
+
+\begin_layout Standard
+Just a few this are left to deal with.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Polyatomic groups:
+\end_layout
+
+\begin_layout Enumerate
+Polyatomic groups like NH4 are built once at runtime.
+\end_layout
+
+\begin_layout Enumerate
+They have to be in user format, so that someone can actually enter them
+ in.
+\end_layout
+
+\begin_layout Enumerate
+But, we cannot render subscripts for them, as they are pre-built.
+\end_layout
+
+\begin_layout Enumerate
+Possible solutions:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+One polyatomic group fact per output mode:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Slow?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The polyatomic group facts should dynamically call the correct output formatter?
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Really slow.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+LaTeX mode will require a wrapper program to allow Chemlogic to be used
+ to simplify document and paper writing.
+\begin_inset Newline newline
+\end_inset
+
+Interfaces should set the correct output format on startup.
+\end_layout
+
+\begin_layout Section
+Parser Improvements and Efficiency
+\end_layout
+
+\begin_layout Itemize
+Exceptions seem like a good way of raising errors.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+They are clear and systematic.
+\end_layout
+
+\begin_layout Itemize
+They can be handled at the right level, and then re-thrown to be formatted
+ for output.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Current parser code triggers several exceptions during the course of normal
+ operation.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This should never happen.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+We must avoid triggering redos while parsing.
+ It causes a massive amount of repetition, which slows everything down.
+\end_layout
+
+\begin_layout Itemize
+When the user enters a compound of unknown type, some issues occur:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ionic expects a metal followed by a non-metal.
+ If it is actually covalent, an error occurs.
+\end_layout
+
+\begin_layout Itemize
+When formulas are entered, the same sort of thing occurs.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Parsers can be made more efficient by using tail rules, that could either
+ add another formula, for example, or expand to nothing.
+ This avoids redos.
+\end_layout
+
+\begin_layout Section
+Code Style
+\end_layout
+
+\begin_layout Subsection
+File Naming
+\end_layout
+
+\begin_layout Standard
+ALL CAPS = plain-text documentation
+\begin_inset Newline newline
+\end_inset
+
+all lowercase, no extension = user interfaces, or programs that could be
+ embedded into other systems
+\begin_inset Newline newline
+\end_inset
+
+*.pl = Prolog code files, libraries
+\end_layout
+
+\begin_layout Subsection
+Variable and Predicate Naming
+\end_layout
+
+\begin_layout Itemize
+Prefix internal variables and functions used for formatting, debugging,
+ workarounds, etc., with a _.
+\end_layout
+
+\begin_layout Itemize
+Keep variable names consistent:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+'Sym' for symbol
+\end_layout
+
+\begin_layout Itemize
+'Formula' for formula
+\end_layout
+
+\begin_layout Itemize
+'Elem' for element
+\end_layout
+
+\begin_layout Itemize
+'Mol' for molecule
+\end_layout
+
+\begin_layout Itemize
+'Coeff' for coefficient
+\end_layout
+
+\begin_layout Itemize
+'Subs' for subscript
+\end_layout
+
+\begin_layout Itemize
+'Qty' for quantity (stoichiometry)
+\end_layout
+
+\begin_layout Itemize
+'Fmt' for format
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+No singletons.
+\end_layout
+
+\begin_layout Itemize
+When processing a list, use the pattern X, XS where possible.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Otherwise use H, T (with a prefix like OutH, OutT)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Do not give functions meaningless names.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+No functions ending in _2, _real, etc.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Some terms might be ambiguous: Result, Output, Value, Coeff, Vars, Qty.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Try to be precise about what they mean.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Rest, R, R0, FinalRest, and other variables are just noisy.
+ They should be abstracted away somehow.
+\end_layout
+
+\begin_layout Subsection
+Web Interface
+\end_layout
+
+\begin_layout Itemize
+x_page routes the request.
+\end_layout
+
+\begin_layout Itemize
+x_input defines input parameters.
+\end_layout
+
+\begin_layout Itemize
+x_process sets up the query to the underlying APIs and converts the result
+ to a HTML structure.
+\end_layout
+
+\begin_layout Itemize
+x_do_process actually queries the APIs.
+\end_layout
+
+\begin_layout Itemize
+x_nop shows the prompt message instructing the user to enter their input.
+\end_layout
+
+\begin_layout Itemize
+x_html generates the page.
+\end_layout
+
+\begin_layout Itemize
+Do not use raw HTML (except in formatting functions, as they may be used
+ by other interfaces), use SWI-Prolog HTML structures instead.
+\end_layout
+
+\begin_layout Subsection
+Indentation in Prolog Code
+\end_layout
+
+\begin_layout Itemize
+One line between different clauses of the same predicate.
+\end_layout
+
+\begin_layout Itemize
+Two lines between different predicate.
+\end_layout
+
+\begin_layout Itemize
+Spaces around all operators.
+\end_layout
+
+\begin_layout Itemize
+No trailing spaces
+\end_layout
+
+\begin_layout Itemize
+Clause body is indented with a tab.
+\end_layout
+
+\begin_layout Itemize
+One line per call.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Excluding !, fail, true, etc.
+\end_layout
+
+\begin_layout Itemize
+Sometimes it is better to combine ';' and '->' clauses on one line.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Parenthesis or brace blocks:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Blank line before and after
+\end_layout
+
+\begin_layout Itemize
+Indent contents one level
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Ideas for the Use of Metaprogramming
+\end_layout
+
+\begin_layout Itemize
+An operator to avoid the need to repeat the arguments of predicates:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Current:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+name(Sym,Rest,Formula) --> ionic(Sym,Rest,Formula).
+\end_layout
+
+\begin_layout Plain Layout
+
+name(Sym,Rest,Formula) --> covalent(Sym,Rest,Formula).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simplified:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+name" --> ionic".
+\end_layout
+
+\begin_layout Plain Layout
+
+name" --> covalent".
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Simple syntax for creating maplist-type functions:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Current:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+double([],[],_).
+\end_layout
+
+\begin_layout Plain Layout
+
+double([InH|InT],[OutH|OutT],Factor) :-
+\end_layout
+
+\begin_layout Plain Layout
+
+	OutH is Factor * InH,
+\end_layout
+
+\begin_layout Plain Layout
+
+	double(InT,OutT,Factor).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simplified:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+double([In],[Out],Factor) :[]
+\end_layout
+
+\begin_layout Plain Layout
+
+	Out is Factor * In.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Something should be done to reduce the complexity of DCG syntax when lots
+ of structures are created.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Example of highly complex code:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+expr(Fmt,Coeff,CoeffR,Elems,ElemR,Formula,FormulaR,[SideH|SideT],Stoich,Qty,QtyR
+) --> 
+\end_layout
+
+\begin_layout Plain Layout
+
+	balanced_formula(Fmt,Coeff,CoeffR0,Elems,ElemR0,Formula,FormulaR0,SideH,Stoich,
+Qty,QtyR0),
+\end_layout
+
+\begin_layout Plain Layout
+
+	expr_tail(Fmt,CoeffR0,CoeffR,ElemR0,ElemR,FormulaR0,FormulaR,SideT,Stoich,QtyR0
+,QtyR), !.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Perhaps consider applying attributed grammar syntax.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Performance Testing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="7">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Before
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Experiment 1
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+After
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FWD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FWD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FWD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REV
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{CH_{4}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{CH_{4}O}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+39
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+34
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{HNO_{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+41
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{NO_{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+52
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+57
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{NH_{4}Cl}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{NaCO_{3}\cdot10H_{2}O}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+74
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All values are number of inferences.
+ Improvements to parsers have made Chemlogic significantly more performant.
+\end_layout
+
+\begin_layout Section
+Experiment: Recognizing Double Replacement Reactions
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+May 1, 2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Welcome to the Chemlogic CLI interface! (Work in progress)
+\end_layout
+
+\begin_layout Plain Layout
+
+Enter a rule in the form:		
+\end_layout
+
+\begin_layout Plain Layout
+
+	input type - 'input' :: output type -X.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+For default output, use: 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	input type - 'input' :: -X.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+To quit the program:
+\end_layout
+
+\begin_layout Plain Layout
+
+	halt.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Input and Output Types: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	formula	Chemical formula 
+\end_layout
+
+\begin_layout Plain Layout
+
+	name		Chemical name 
+\end_layout
+
+\begin_layout Plain Layout
+
+	symbolic	Symbolic equation 
+\end_layout
+
+\begin_layout Plain Layout
+
+	word		Word equation
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Example:	formula - 'CuCl2' :: -Name.
+\end_layout
+
+\begin_layout Plain Layout
+
+			symbolic - 'H2 + O2 --> H2O' :: word - Result.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+Complex:	name - 'baking soda' :: -F, formula - F :: -CanonicalName.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ALL LINES MUST END WITH A .
+\end_layout
+
+\begin_layout Plain Layout
+
+* Fact DB compiled 
+\end_layout
+
+\begin_layout Plain Layout
+
+?- formula(user,E,[],F,[],"HCH3COO",[]).
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	E = [['H'], ['C'], ['H'], ['C'], ['O'], ['O']], 
+\end_layout
+
+\begin_layout Plain Layout
+
+	F = [[['H'], 1], [[[['C'], 1], [['H'], 3], [['C'], 1], [['O'], 1], [[...]|...]],
+ 1]].
+\end_layout
+
+\begin_layout Plain Layout
+
+?- formula(user,E,[],F2,[],"NH4OH",[]).
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	E = [['N'], ['H'], ['O'], ['H']], 
+\end_layout
+
+\begin_layout Plain Layout
+
+	F2 = [[[[['N'], 1], [['H'], 4]], 1], [[[['O'], 1], [['H'], 1]], 1]].
+\end_layout
+
+\begin_layout Plain Layout
+
+?- EQN = [$F,$F2].
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	EQN = [[[['H'], 1], [[[['C'], 1], [['H'], 3], [['C'], 1], [[...]|...], [...|...]],
+ 1]], [[[[['N'], 1], [['H'], 4]], 1], [[[['O'], 1], [['H'], 1]], 1]]].
+\end_layout
+
+\begin_layout Plain Layout
+
+?- $EQN = [[["H",_],[AcidIon,_]],[[BaseIon,_],[[["O",1],["H",1]],_]]].
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	AcidIon = [[['C'], 1], [['H'], 3], [['C'], 1], [['O'], 1], [['O'], 1]],
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	BaseIon = [[['N'], 1], [['H'], 4]].
+\end_layout
+
+\begin_layout Plain Layout
+
+?- EQNR = [[[$BaseIon,x],[$AcidIon,y]],[["H",2],["O",1]]].
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	EQNR = [[[[[['N'], 1], [['H'], 4]], x], [[[['C'], 1], [['H'], 3], [['C'],
+ 1], [[...]|...], [...|...]], y]], [[['H'], 2],[['O'], 1]]].
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Building Chemlogic for Prolog Cafe (A Prolog Implementation in Java)
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+October 1, 2014
+\end_layout
+
+\begin_layout Enumerate
+Environment variables
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+PLCAFEDIR="/home/npaun/Downloads/PrologCafe1.2.5/"
+\end_layout
+
+\begin_layout Plain Layout
+
+ANT_HOME="/home/npaun/Downloads/apache-ant-1.9.4"
+\end_layout
+
+\begin_layout Plain Layout
+
+JAVA_HOME="/usr/lib/jvm/java-1.6.0/jre/" PATH="/home/npaun/Downloads/apache-ant-1.9.
+4/bin/:/home/npaun/Downloads/PrologCafe1.2.5/bin/:/usr/lib64/qt-3.3/bin:/usr/local/
+bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/npaun/bin"
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Create an ordinary project in Eclipse Name: xxx.app
+\end_layout
+
+\begin_layout Enumerate
+Copy plcafe.jar to libs/
+\end_layout
+
+\begin_layout Enumerate
+Write Java bindings Package: xxx.bindings
+\end_layout
+
+\begin_layout Enumerate
+Create symlink <bindings> to src/xxx/bindings/
+\end_layout
+
+\begin_layout Enumerate
+Write Prolog code 
+\end_layout
+
+\begin_layout Enumerate
+Run pljava to create Java source code 
+\end_layout
+
+\begin_layout Enumerate
+Copy everything in the java/ folder to some location
+\end_layout
+
+\begin_layout Enumerate
+Use ed to create package xxx.prolog
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for i in *.java; do 
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo '0a package ca.nicholaspaun.plcafe.prolog; .
+ w' | ed $i
+\end_layout
+
+\begin_layout Plain Layout
+
+done
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Create symlink <prolog> to src/xxx/prolog/
+\end_layout
+
+\begin_layout Enumerate
+Update project using android
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+~/vboxshare/adt-bundle-linux-x86_64-20140702/sdk/tools/android update project
+ -p .
+ --subprojects --target android-19
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Build using ant debug
+\end_layout
+
+\begin_layout Enumerate
+Install with adb
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+~/vboxshare/adt-bundle-linux-x86_64-20140702/sdk/platform-tools/adb install
+ -r bin/MainActivity-debug.apk 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Cross-Compiling Chemlogic for Android
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+November 24, 2014
+\end_layout
+
+\begin_layout Standard
+In the end, I had to give up on converting Chemlogic's code to run on a
+ Prolog that is made for Android.
+ Cross-compiling (building on a PC to run on Android) SWI-Prolog (the one
+ Chemlogic currently uses) and many, many other Prologs using Google's tools
+ would not work because the C library supplied with Android does not conform
+ to international standard.
+ I realized that I would have to get a real C library (GLIBC) to work on
+ Android.
+ The process looked so convoluted that I did not want to even try it.
+ Then, by chance, I stumbled on a method that I'd tried out earlier during
+ the summer but could not get working (without requiring copious amounts
+ of disk space): running the code of a real Linux distribution, compiled
+ for ARM, using the Android kernel.
+ This is named the chroot process.
+ The excellent article I read suggested using Angstrom Linux, which is a
+ distribution specifically intended for embedded Linux and is only 80MB.
+ It also explained how to bootstrap the chroot, using Angstrom's linker
+ to re-link the shell to the provided GLIBC library, which then starts the
+ chroot, in order to bypass Android's crummy C library and start the Linux
+ distribution.
+\end_layout
+
+\begin_layout Standard
+It worked so well! The only thing left to do was to compile SWI-Prolog for
+ ARM, using my Intel laptop, with the real GLIBC.
+ Angstrom used to make an excellent toolchain, but they stopped distributing
+ it.
+ Luckily, someone on a forum had a link to a copy floating around at the
+ Internet Archive.
+ The toolchain worked perfectly and I had to repair only a silly short-sighted
+ piece of code in SWI-Prolog's build utility.
+ I did also have to replace some ARM compiled tools, used only during building,
+ with pre-compiled Intel versions, so that the build process could actually
+ use these files.
+ Prolog could then be bootstrapped on the Android itself, to make its PRC
+ file, thus finishing the build process.
+\end_layout
+
+\begin_layout Standard
+Finally, Chemlogic was loaded and it could correctly balance chemical equations
+ -- even the built-in linear algebra system worked properly! I then decided
+ to trim down the 80 MB installation by selecting only the essential files
+ and libraries Chemlogic needed, using another fascinating article that
+ discusses using the linker, again, (which I never knew could be used directly
+ by a user, before this project) to retrieve dependency information.
+ This got the whole system down to 5.1 MB.
+\end_layout
+
+\begin_layout Standard
+Now, I have to make this process systematically repeatable, so that I am
+ not dependent on random files and computers that might break down, leaving
+ me with no clue as to why this stuff even works.
+ I will need to write a simple bootstrap program that automatically starts
+ Chemlogic, so it can communicate with the Android app, which is written
+ in Java.
+ I will also write a little bit of code to make the output of Chemlogic
+ easy to transmit to Java, parse and insert into the app.
+ Most of the code is already written: just a few small changes to the command-li
+ne interface, a few subroutines to deal with identification and error handling
+ and a new formatter for errors, based mostly on the one from the Web interface,
+ interestingly enough.
+\end_layout
+
+\begin_layout Section
+Repeatable Builds for the Cross-Compiling Chemlogic
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+November 30, 2014
+\end_layout
+
+\begin_layout Enumerate
+angstrom distribution 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Unpack it and grab the necessary files 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+angstrom toolchain 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Unpack it.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Patch SWI-Prolog's configure script to stop complaining when cross-compiling,
+ run autoreconf 
+\end_layout
+
+\begin_layout Enumerate
+Build it with angstrom toolchain.
+ 
+\end_layout
+
+\begin_layout Enumerate
+When trouble strikes, repatch with defatom and mkvmi from x86_64 Prolog.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Build libgmp with angstrom toolchain.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Copy clpqr to clp library locally 
+\end_layout
+
+\begin_layout Enumerate
+Copy library and boot to angstrom environment 
+\end_layout
+
+\begin_layout Enumerate
+Tell SWI-Prolog to build the boot file.
+\end_layout
+
+\begin_layout Enumerate
+Tell SWI-Prolog where clp is located.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Load chemlogic files 
+\end_layout
+
+\begin_layout Enumerate
+QSave
+\end_layout
+
+\begin_layout Enumerate
+Finally, copy only necessary files to production angstrom environment.
+\end_layout
+
+\begin_layout Section
+The Android App, Stoichiometry and Reaction Type Analysis
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+January 23, 2015
+\end_layout
+
+\begin_layout Standard
+I've finished the Android app for Chemlogic last week.
+ It's been a major challenge and has consumed nearly all of my time.
+ It works quite well on the emulator, but I still have not tried it on a
+ real phone.
+ I also haven't put it on the Google Play app store yet, because the payment
+ setup is rather convoluted -- I will probably do this sometime before the
+ science fair.
+\end_layout
+
+\begin_layout Standard
+Amazingly, though, stoichiometry is working very well: In about 30 minutes,
+ I added molar mass calculations, conversions to/from mass, moles, volume
+ (gases).
+ I've started work on implementing molar concentrations (added calculations
+ involving solution volume and concentrations to/from moles), but I've forgotten
+ how exactly the rest of the concentration calculations work.
+ I have to re-read some sections from the Chem 11 book.
+ 
+\end_layout
+
+\begin_layout Standard
+After finishing stoichiometry, I hope to implement reaction type analysis,
+ a quiz feature and net ionic equations.
+ I'm not quite sure how difficult these features are.
+\end_layout
+
+\begin_layout Standard
+Simply detecting the type of reaction (for a few common types) an equation
+ represents, will be as easy as the work I started on stoichiometry, completing
+ the reaction is easy too (if I stick to double replacement, combustion,
+ etc.) The major problem is deciding whether or not a reaction will take
+ place.
+ Last year I discussed using the electrochemical series of standard electrode
+ potentials, which is almost the same as the activity series, but with a
+ numerical quantity associated with it.
+ I was worried that it was a bit different from the activity series in the
+ textbook, until my teacher found 3 different activity series, all of which
+ have slightly different orders.
+ I'm not sure which version to use.
+ The reactivity series on Wikipedia disagrees with all of the other ones
+ I've seen; is lithium more reactive than sodium: Wikipedia says no, the
+ others say yes.
+\end_layout
+
+\begin_layout Standard
+Non-metals and polyatomic ions are also a massive problem: I cannot find
+ any series which shows the reactivities of different non-metals, except
+ for the halogens.
+ My teacher says that there aren't any high school Chemistry problems that
+ would involve deciding whether one non-metal would replace another, except
+ for the halogens.
+ Maybe Chemlogic should just say "I don't know -- try it yourself!" in those
+ cases.
+\end_layout
+
+\begin_layout Standard
+The new features are very complex, but they don't change any of the fundamentals
+ of Chemlogic.
+ I can explain that because of the modular design of Chemlogic I implemented,
+ stoichiometry and reaction type analysis can simply be implemented by manipulat
+ing the abstract syntax trees the equation and formula parsers produce and
+ the android app can communicate with the rest of Chemlogic through the
+ user interface systems.
+ I'm not sure how much new material this is -- but I don't think I should
+ worry about this: after all, I wrote a 30 page paper where a 5 page one
+ was required!
+\end_layout
+
+\begin_layout Section
+More Updates on the Android App
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+January 30, 2015
+\end_layout
+
+\begin_layout Standard
+I've also been able to finally try it on a real device! Mr.
+ Leeming has lent me a junky old Galaxy Tab (a tablet thingy).
+ The app worked!
+\end_layout
+
+\begin_layout Standard
+There were a few issues, but all of them had to do with the appearance of
+ the app, rather than the functionality.
+ Some of the styling has been changed by Google between the really old version
+ of Android that the Tab runs and newer versions of Android -- this caused
+ such wonderful behaviour as white text on a white background.
+ I was able to quickly correct the unreadable parts and get the app to at
+ least look normal on all Android devices.
+ Although I'm not going to bother too much with styling, there are one or
+ two rather irritating display issues that I will fix when I get around
+ to it.
+\end_layout
+
+\begin_layout Standard
+I'm not quite sure how to give a technical discussion of the App --- everything
+ seemed so complex and arcane in December, when I last explained it.
+ So, here is a very long summary of how it works:
+\end_layout
+
+\begin_layout Standard
+The App consists of a Java (the language Android uses) user interface and
+ the cross-compiled Chemlogic code, written in Prolog.
+\end_layout
+
+\begin_layout Standard
+The user interface renders the design of the app (textboxes, buttons, etc.),
+ it then filters the input to make sure that there isn't anything in it
+ that will crash Prolog and then communicates with Chemlogic through a UNIX
+ pipe.
+ Upon recieving the response, it renders the formatting -- subscripts, red
+ color for errors, etc.
+ --- (Android was supposed to do this for me, but it wasn't very good at
+ it so I had to extend it) and displays it.
+ The user interface also adds an extra row of keys to the keyboard so that
+ you don't have to repeatedly enter menus on the phone to type an arrow
+ or a plus.
+\end_layout
+
+\begin_layout Standard
+I've greatly simplified the way that Chemlogic runs on the Android.
+ Basically, Chemlogic is now compiled as a stand-alone application, meaning
+ that it includes the Prolog interpreter in its file.
+ It is distributed with the libraries it depends on.
+ Chemlogic is started by Java by running a program that runs the dynamic
+ linker to locate Chemlogic's libraries and then executes it.
+\end_layout
+
+\begin_layout Standard
+The need for a chroot mechanism has been eliminated (and it didn't actually
+ work on a real Android phone), as well as a shell for running inside the
+ chroot.
+ A few of the libraries have also become unnecessary, as has an extra copy
+ of the Prolog interpreter.
+ The total size of Chemlogic is now 4 MB.
+ Prolog and Chemlogic must still be cross-compiled by a convoluted process,
+ but I have now finished automating it and it works correctly every time
+ (...I think).
+\end_layout
+
+\begin_layout Standard
+To make the app work, I had to implement a way for the user interface to
+ install Chemlogic onto the device, run it and then communicate with it.
+ Since the Android system will not install Chemlogic's files, I had to implement
+ some Java code that verifies whether the correct version of Chemlogic is
+ installed on the device.
+ If it is, the app will just start.
+ If not, it extracts Chemlogic and copies it file by file, megabyte by megabyte
+ (thanks Java!)
+\end_layout
+
+\begin_layout Standard
+I've already explained a little bit about how the app is started and how
+ it communicates.
+ The user interface writes a command to the pipe, when Chemlogic reads.
+ Chemlogic writes its answer to the pipe, which the interface reads.
+ It would be nicer if bindings between Prolog and Java could be implemented,
+ so that running Chemlogic is the same as running a subroutine, but I did
+ not have time to experiment with this and it would greatly increase the
+ complexity of the cross-compilation process.
+ The pipe model is, however, one of the most interesting parts of the UNIX
+ model: everything is a file, everything is text, anything can read text
+ and anything can write text.
+ It allows many utilities to be piped to each other, each reading the previous
+ one's output and writing to the next one.
+ User input/output is, in fact, implemented using this model as well: the
+ keyboard is piped to the input and the output is piped to the screen.
+ The funny issue with this, which took me a long time to grasp, is: How
+ do the interface and Chemlogic know when the other end of the pipe finishes
+ transmitting data (like a query or a response.)? Unlike a subroutine which
+ returns a variable, the two programs must look for a specific pattern ---
+ the same way a user would.
+\end_layout
+
+\begin_layout Standard
+e.g.
+ When the user enters a command, he presses ENTER.
+ Now Chemlogic knows that the user has finished typing and it displays the
+ response.
+ The App does this as well.
+ The output was a bit harder.
+ Chemlogic might produce blank lines as output, for readability, error correctio
+n or other reasons.
+ Therefore another mechanism must be found for determining the end of the
+ message.
+ Creating an "END OF MESSAGE" marker seemed just ridiculous.
+ I realized that a human user also needs a cue to know when to type another
+ query --- this is the interactive prompt.
+ In the case of the App, the user interface now continues reading until
+ it sees "?- CL [query n]" (Chemlogic's interactive prompt), which lets
+ it know that Chemlogic has finished.
+\end_layout
+
+\begin_layout Standard
+I should add that although the pipe model seems to imply transmission and
+ communication between computers (and it often can), in this case the communicat
+ion is entirely virtual -- it is between multiple processes on the same
+ computer.
+ The mechanism is almost exactly the same.
+\end_layout
+
+\begin_layout Standard
+....And now, with all that mostly done, I will continue to work on stoichiometry.
+\end_layout
+
+\begin_layout Section
+Some Notes on Stoichiometry
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+April 29, 2015
+\end_layout
+
+\begin_layout Itemize
+The chemical equation parsers were extended to allow the user to provide
+ the quantity of each molecular species in an equation.
+\end_layout
+
+\begin_layout Itemize
+A new grammar was written for the purposes of manipulating quantities.
+\end_layout
+
+\begin_layout Itemize
+The queries which could be made when limiting reactant analysis is performed,
+ are very complex.
+\end_layout
+
+\begin_layout Itemize
+A separate list of queries is provided by the user.
+\end_layout
+
+\begin_layout Itemize
+Stoichiometry begins by manipulating the ASTs generated by balancing.
+\end_layout
+
+\begin_layout Itemize
+First, it is determined whether limiting reactant analysis is necessary.
+ (It is necessary if the quantity of more than compound is provided).
+\end_layout
+
+\begin_layout Itemize
+If so, the limiting reactant is determined by a simple systematic algorithm,
+ which applies even if the units of the input quantities are different.
+ (UC Davis Chemwiki).
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The quantities of each reactant are converted to moles, then divided by
+ the coefficient of the compound.
+\end_layout
+
+\begin_layout Itemize
+The compound with the lowest ratio is the limiting reactant.
+\end_layout
+
+\begin_layout Itemize
+The number of moles of the limiting reactant are used to answer the queries.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+If there is no limiting reactant, then the moles of the provided compound
+ are used to answer the queries.
+\end_layout
+
+\begin_layout Itemize
+Procedures are implemented for performing all of the unit conversions necessary.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Support for concentrations of chemicals is implemented.
+\end_layout
+
+\begin_layout Itemize
+Many patterns are supported.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Chemlogic will always produce results with the correct number of significant
+ figures.
+ The number of significant figures in each input value is determined and
+ recorded.
+ Each unit conversion procedure determines the maximum number of significant
+ figures that can be preserved.
+ When user output is produced, numbers are rounded to the correct precision.
+\end_layout
+
+\begin_layout Itemize
+Producing a user-friendly Web interface that can handle complex stoichiometric
+ calculations is a significant challenge.
+\end_layout
+
+\begin_layout Itemize
+Unlike the interfaces for balancing and converting formulas to names, which
+ are just simple wrappers around the underlying API, the stoichometry user
+ interface is very user interactive and much code had to be added to prepare
+ the correct queries to send to the API.
+\end_layout
+
+\begin_layout Part
+Program Documentation
+\end_layout
+
+\begin_layout Section
+README
+\end_layout
+
+\begin_layout Subsection
+Usage and Installation
+\end_layout
+
+\begin_layout Standard
+Chemlogic comes with two interfaces: a command-line interface and a Web
+ interface.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To run the CLI:
+\end_layout
+
+\begin_layout Enumerate
+cd cli/ 
+\end_layout
+
+\begin_layout Enumerate
+./chemcli
+\end_layout
+
+\begin_layout Standard
+The CLI implements an extemely simple DSL for querying chemical information
+ (a help message will appear when chemcli is run).
+ It is also a Prolog top-level (shell), so you program more complicated
+ things.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To run the Web interface:
+\end_layout
+
+\begin_layout Enumerate
+cd web/ 
+\end_layout
+
+\begin_layout Enumerate
+./chemweb
+\end_layout
+
+\begin_layout Standard
+The Web interface runs on port 8000 by default, at http://localhost:8000/chemlog
+ic/.
+ The Web interface provides a simple interface for all of the Chemlogic
+ features.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To compile the interfaces, use make:
+\end_layout
+
+\begin_layout Enumerate
+1.
+ make <interface> 
+\end_layout
+
+\begin_layout Enumerate
+2.
+ make install 
+\end_layout
+
+\begin_layout Standard
+Run make help for more details.
+\begin_inset Newline newline
+\end_inset
+
+<interface> is either cli or web, or all to build both interfaces.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The program will be installed by default to /usr/local.
+ This can be changed by passing PREFIX=<directory> to make to install Chemlogic
+ under a UNIX-style filesystem structure or by passing DEST=<directory>
+ to install all Chemlogic files to the specified directory.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+NOTE: These options must be specified when running both the build and install
+ targets, if they are run separately.
+\end_layout
+
+\begin_layout Standard
+The executables built are still dependent on a copy of SWI-Prolog.
+\begin_inset Newline newline
+\end_inset
+
+NOTE: If the fact/ database is edited, the program must be re-compiled.
+ 
+\begin_inset Newline newline
+\end_inset
+
+NOTE: The Web interface will automatically search for its style files in
+ <PREFIX>/share/chemlogic, or if it is not found, the current directory.
+\end_layout
+
+\begin_layout Subsection
+Dependencies
+\end_layout
+
+\begin_layout Standard
+Chemlogic is written in Prolog and requires a Prolog interpreter.
+ The code is mostly conformant with ISO Prolog and requires DCG features
+ and the CLP(q) library.
+ The Web interface depends on SWI-Prolog and is built using the Web framework.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prolog distributions: 
+\end_layout
+
+\begin_layout Itemize
+SWI-Prolog: Developed and tested on this platform.
+ (See <http://www.swi-prolog.org/> for information.) 
+\end_layout
+
+\begin_layout Itemize
+YAP, CIAO and XSB Prolog: Will probably work.
+ 
+\end_layout
+
+\begin_layout Itemize
+GNU Prolog: Might work, but CLP(q) must be ported.
+ 
+\end_layout
+
+\begin_layout Itemize
+Prolog Cafe, tuProlog and GNU Prolog for Java: Will not work (tested).
+ Signficant parts of the ISO standard are missing or incorrectly implemented.
+ 
+\end_layout
+
+\begin_layout Subsection
+Features
+\end_layout
+
+\begin_layout Itemize
+Chemical formulas (incl.
+ hydrates) 
+\end_layout
+
+\begin_layout Itemize
+Chemical names 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Retained names 
+\end_layout
+
+\begin_layout Itemize
+Acids 
+\end_layout
+
+\begin_layout Itemize
+Ionic compounds 
+\end_layout
+
+\begin_layout Itemize
+Covalent compounds 
+\end_layout
+
+\begin_layout Itemize
+Some organic compounds 
+\end_layout
+
+\begin_layout Itemize
+Pure substances/allotropes 
+\end_layout
+
+\begin_layout Itemize
+Common names
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Chemical equations
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Symbolic equations 
+\end_layout
+
+\begin_layout Itemize
+Word equations
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Stoichiometric calculations 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Limiting reactant analysis 
+\end_layout
+
+\begin_layout Itemize
+Excess quantity calculations 
+\end_layout
+
+\begin_layout Itemize
+Support for concentration units
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Reaction type analysis 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Completion of neutralization, double replacement and single replacement
+ reactions.
+ 
+\end_layout
+
+\begin_layout Itemize
+Predicts whether reactions of any of the above types will occur (using the
+ reactivity series.) 
+\end_layout
+
+\begin_layout Itemize
+Identification of neutralization, double replacement, single replacement,
+ decomposition and synthesis reactions.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Changelog
+\end_layout
+
+\begin_layout Itemize
+Version 2.0 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Added support for reaction type analysis (identification, completion and
+ prediction) 
+\end_layout
+
+\begin_layout Itemize
+Added support for stoichiometric calculations (incl.
+ limiting reactant analysis, concentration calculations) 
+\end_layout
+
+\begin_layout Itemize
+Developed an Android user interface (packaged separately) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Version 1.0 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+First release
+\end_layout
+
+\end_deeper
+\begin_layout Section
+TODO
+\end_layout
+
+\begin_layout Subsection
+Chemistry features
+\end_layout
+
+\begin_layout Itemize
+ Support for structural formulas: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ The covalent parser will have to be extended very much, to handle structures
+ of the compounds it supports 
+\end_layout
+
+\begin_layout Itemize
+ The formula parser will need to have some sort of input and output representati
+on for structural formulas
+\end_layout
+
+\begin_layout Itemize
+ Each output format will have its own ways of rendering structural formulas.
+ This will have to be extended.
+\end_layout
+
+\begin_layout Itemize
+A module will be needed to convert structural formulas to molecular formulas
+ for balancing and other processes.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ More organic naming: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ It will be useful to implement organic compound naming at least for Chemistry
+ 11 to 12.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ Complex Redox reactions: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ Sometimes, for a few very complex redox reactions, Chemlogic gives an answer
+ that satisfies the system of linear equations (i.e.
+ is balanced) but will not actually occur in real life.
+ 
+\end_layout
+
+\begin_layout Itemize
+ A new balancing process, with a separate module should be implemented.
+ Perhaps based on oxidation numbers or half-reactions
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ Diagramming: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ Show structural formulas of compounds 
+\end_layout
+
+\begin_layout Itemize
+ Bohr models, Lewis diagrams 
+\end_layout
+
+\begin_layout Itemize
+Periodic tables?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Equilibrium calculations
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Extend stoichiometry to enable the user to perform equilibrium calculations.
+\end_layout
+
+\begin_layout Itemize
+This requires applying multiple stoichiometric calculations in a new simplified
+ user interface.
+\end_layout
+
+\begin_layout Itemize
+Reaction, solubility and acid-base equilibria could be supported.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Program features
+\end_layout
+
+\begin_layout Itemize
+ Extend the 
+\family typewriter
+chemcli
+\family default
+ DSL to make it more useful.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ Offer a way to query the chemical information database.
+ 
+\end_layout
+
+\begin_layout Itemize
+ More constructs/operators.
+\end_layout
+
+\begin_layout Itemize
+ A standard library? 
+\end_layout
+
+\begin_layout Itemize
+ This will all depend on the sorts of programs that someone will actually
+ want to write
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ Quiz program 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allow for questions to be generated with selectable options (the parser
+ and perhaps major sub-parts)
+\end_layout
+
+\begin_layout Itemize
+ Interactive and non-interactive usage depending on output format 
+\end_layout
+
+\begin_layout Itemize
+ Configurable marking (allow retry, show correct answer at end, etc.) 
+\end_layout
+
+\begin_layout Itemize
+ Possible to produce the same questions if passed the same seed.
+  Some sort of intelligence, focusing on problem areas when giving questions.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ Expose the chemical information database.
+\end_layout
+
+\begin_layout Itemize
+ Better error messages for equation balancing errors 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ Test to ensure that all elements appear in both products and reactants
+\end_layout
+
+\begin_layout Itemize
+ Perhaps explain why some charge shifts are unsatisfied 
+\end_layout
+
+\begin_layout Itemize
+ Explain which element makes the system unbalancable, if possible.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Organization and Structure
+\end_layout
+
+\begin_layout Itemize
+Take advantage of SWI-Prolog's new string type.
+ This makes tokenization, concatenation and many other things more efficient.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Chemlogic needs a simple tokenizer to break up chemical names and equations
+ (especially) 
+\end_layout
+
+\begin_layout Itemize
+ At minimum, it should split on spaces and remove extraneous spaces 
+\end_layout
+
+\begin_layout Itemize
+ Potentially deal with character types? 
+\end_layout
+
+\begin_layout Itemize
+ Potentially deal with the insides of parentheses? 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ Rewrite the current error tokenizers to use the new and better functions
+ 
+\end_layout
+
+\begin_layout Itemize
+ Tokenizers make parser much, much nicer: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ It is now quick and simple to see if something is an acid without having
+ to go through all of the tests 
+\end_layout
+
+\begin_layout Itemize
+ It can be easy to distinguish between ionic and covalent
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ Make the oxyanion functions less messy and hacky.
+ There must be a better way to tell the user what's wrong with the oxyanion
+ names.
+ 
+\end_layout
+
+\begin_layout Itemize
+ The ugly hacks around pure substances can be removed with a better tokenizer
+\end_layout
+
+\begin_layout Itemize
+ Some things will need to be renamed and reorganized
+\end_layout
+
+\begin_layout Itemize
+ Use more meta-programming to remove boilerplate code from the web interface.
+\end_layout
+
+\begin_layout Subsection
+Bugs
+\end_layout
+
+\begin_layout Itemize
+ The program will get very upset if a substance is repeated:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ e.g.
+ H2O + H2O --> H2O 
+\end_layout
+
+\begin_layout Itemize
+There is not much of a valid reason to enter this, but the program should
+ handle this correctly 
+\end_layout
+
+\begin_layout Itemize
+An error message explaining that this is junk is probably a good idea
+\end_layout
+
+\end_deeper
+\begin_layout Part
+Development Information
+\end_layout
+
+\begin_layout Section
+Branches
+\end_layout
+
+\begin_layout Standard
+Variants of the code were produced to allow for new features to be tests
+ without interfering with already written code.
+\end_layout
+
+\begin_layout Description
+android Extended the command-line interface to allow its use in the Android
+ application, by making simple changes, including: adding an API mode to
+ the chemcli program to allow the Android App to communicate with Chemlogic
+ over pipes, extending the output formatting system to process error displays.
+\end_layout
+
+\begin_layout Description
+build Developed an improved building system, using make instead of shell
+ scripts, that could support more complex building configurations.
+ This was useful when developing the Android App.
+\end_layout
+
+\begin_layout Description
+combine_solving An experiment: Removing the matrix and system of linear
+ equation creation steps, and converting the tabulation module to directly
+ solve the equations.
+ This version was not used because the current process is easier to debug.
+\end_layout
+
+\begin_layout Description
+complex_redox Various experiments to determine under what circumstances
+ Chemlogic produces a valid balanced solution that is not actually the experimen
+tally-determined balancing.
+\end_layout
+
+\begin_layout Description
+db_add Used to introduce new information into the chemical facts database.
+\end_layout
+
+\begin_layout Description
+explain Introduced the error explanation feature, which highlights the erroneous
+ parts of user input and provides an appropriate error message.
+\end_layout
+
+\begin_layout Description
+interface Developed the Chemlogic Web interface, written using SWI-Prolog's
+ HTML processing libraries.
+\end_layout
+
+\begin_layout Description
+master The main development branch.
+\end_layout
+
+\begin_layout Description
+modularize Separated code into logical parts using Prolog modules.
+\end_layout
+
+\begin_layout Description
+parser The performance of various parsers was improved by rewriting DCG
+ clauses.
+ Some incorrect behavior in special cases was also corrected.
+\end_layout
+
+\begin_layout Description
+parser_error The parsers were modified to raise syntax errors when user
+ input was invalid.
+ This changes allowed for the implementation of error handling.
+\end_layout
+
+\begin_layout Description
+parser_tokenizer An experiment: Implementing a tokenizer would make parsers
+ simpler and more performant.
+\end_layout
+
+\begin_layout Description
+plcompat An experiment: Made the Chemlogic code fully compliant with the
+ ISO Prolog standard, and provided implementations for some non-portable
+ predicates.
+ This branch was not used because the Android App was realized by cross-compilin
+g SWI-Prolog for Android, rather than compiling the Chemlogic code using
+ a JVM based Prolog implementation.
+\end_layout
+
+\begin_layout Description
+solve_explain Various experiments to explain the solving process and its
+ errors more clearly to users.
+\end_layout
+
+\begin_layout Description
+stoichiometry Implemented the new stoichiometry feature, including limiting
+ reactant analysis, a quantity grammar, significant figures handling, unit
+ conversion and the molar and stoichiometer interfaces.
+\end_layout
+
+\begin_layout Description
+type_domain_error Introduced handling for type and domain errors which occur
+ when input is syntactically valid, but malformed.
+ This can occur due to implementation errors, but are usually caused by
+ a user inputting a logically incorrect equation.
+\end_layout
+
+\begin_layout Description
+type_info Developed the new reaction type analysis feature, based on pattern
+ match.
+ Reaction completion, prediction and type identification were implemented.
+\end_layout
+
+\begin_layout Description
+unbalancable The balancing process was modified to detect equations that
+ are unbalanceable because elements are missing from the reactants and/or
+ the products and identify the missing elements.
+\end_layout
+
+\begin_layout Section
+Changelog
+\end_layout
+
+\begin_layout Standard
+An abbreviated version of the Git version control log for the Chemlogic
+ repository is reproduced here.
+\end_layout
+
+\begin_layout Itemize
+New changelog and features for README.
+\end_layout
+
+\begin_layout Itemize
+Updated TODO to reflect 2014-2015 changes.
+\end_layout
+
+\begin_layout Itemize
+Finished merging stoichiometry with type_info.
+\end_layout
+
+\begin_layout Itemize
+Merge branch 'stoichiometry'
+\end_layout
+
+\begin_layout Itemize
+Remove ridiculous debugging message.
+\end_layout
+
+\begin_layout Itemize
+Merge in stoichiometry!!!
+\end_layout
+
+\begin_layout Itemize
+Stoichiometry is done.
+\end_layout
+
+\begin_layout Itemize
+The full calculation can now be performed.
+ We simply require input boxes.
+\end_layout
+
+\begin_layout Itemize
+Render results as HTML.
+\end_layout
+
+\begin_layout Itemize
+Stoichiometer will kinda sorta show results.
+\end_layout
+
+\begin_layout Itemize
+It still did not crash -- we are now rendering our results.
+\end_layout
+
+\begin_layout Itemize
+Added query_result for the Web interface.
+\end_layout
+
+\begin_layout Itemize
+The Web Stoichiometer can actually perform queries in the background now!!!
+\end_layout
+
+\begin_layout Itemize
+More error handling for chemical quantities.
+\end_layout
+
+\begin_layout Itemize
+And now, add conversion to determine M from mols.
+\end_layout
+
+\begin_layout Itemize
+The unit and format conversion routines must handle all logic errors.
+\end_layout
+
+\begin_layout Itemize
+Allow requesting answers in M.
+\end_layout
+
+\begin_layout Itemize
+Try to support molar UI tail units (and dilutions!)
+\end_layout
+
+\begin_layout Itemize
+Re-fix querying with one part results.
+\end_layout
+
+\begin_layout Itemize
+Simplify the tail unit for the molar UI.
+\end_layout
+
+\begin_layout Itemize
+Merge branch 'type_info'.
+ Import reaction type analysis features for the science fair!!!
+\end_layout
+
+\begin_layout Itemize
+Actually, activity_check_multiple must be written differently.
+\end_layout
+
+\begin_layout Itemize
+Also allow 2>1 and 4>3 for double replacement.
+\end_layout
+
+\begin_layout Itemize
+The other form of neutralization (reaction_types).
+\end_layout
+
+\begin_layout Itemize
+Ensure that all errors are handled in reaction_types.
+\end_layout
+
+\begin_layout Itemize
+OOPS: Formula to name should actually run formula to name.
+\end_layout
+
+\begin_layout Itemize
+Do not crash when reaction type info is unavailable.
+\end_layout
+
+\begin_layout Itemize
+Removed now unecessary query conversion.
+\end_layout
+
+\begin_layout Itemize
+Allow Chemlogic interfaces to access the conversion interface without having
+ to create grammatical input.
+\end_layout
+
+\begin_layout Itemize
+Just an experiment to hackily allow actual answers with a tail.
+\end_layout
+
+\begin_layout Itemize
+Allow enter to submit on the molar form
+\end_layout
+
+\begin_layout Itemize
+Add support for two-part output (concentration chemistry).
+\end_layout
+
+\begin_layout Itemize
+Simplify the output list production procedure, so as to make dealing with
+ a large number of units actually reasonable.
+\end_layout
+
+\begin_layout Itemize
+Allow entering volume/concentration quantities in grammatical input.
+\end_layout
+
+\begin_layout Itemize
+HACK: Chemlogic should not fix up ethanol and ethanoic acid.
+\end_layout
+
+\begin_layout Itemize
+Make the quantity DCG actually output with sigfigs.
+\end_layout
+
+\begin_layout Itemize
+Make the quantity DCG produce sigfigs output.
+\end_layout
+
+\begin_layout Itemize
+Allow useless reactions to take place (we tell the user that they wont happen).
+\end_layout
+
+\begin_layout Itemize
+One more place to fix the odd acid issue.
+\end_layout
+
+\begin_layout Itemize
+Partial correction for strange bug relating to acids with bi- anions.
+\end_layout
+
+\begin_layout Itemize
+Cut away nonsensical error messages.
+\end_layout
+
+\begin_layout Itemize
+Fully integrate the logic errors for ionic compounds.
+\end_layout
+
+\begin_layout Itemize
+Experiment: if the correctors are declared as logic errors, we can more
+ clearly identify where the issue lies, because syntax error handling will
+ be unable to locate the problem input.
+\end_layout
+
+\begin_layout Itemize
+Experiment: allows error messages produced while completing reactions to
+ appear.
+\end_layout
+
+\begin_layout Itemize
+Make requesting reaction info dependent upon actually successfully balancing
+ an equation.
+\end_layout
+
+\begin_layout Itemize
+No reaction when the same anion or the same cation is present in both reactants.
+\end_layout
+
+\begin_layout Itemize
+Add a useful answer for reactions between acids and bases.
+\end_layout
+
+\begin_layout Itemize
+Improved styling of reaction information.
+\end_layout
+
+\begin_layout Itemize
+Add activity info to the web interface.
+\end_layout
+
+\begin_layout Itemize
+Added a simple predicate to explain the results of activity checking.
+\end_layout
+
+\begin_layout Itemize
+Try to guess whether a reaction will occur.
+\end_layout
+
+\begin_layout Itemize
+Add some new headers and begin to check against the activity series.
+\end_layout
+
+\begin_layout Itemize
+Registered the activity series in the database.
+\end_layout
+
+\begin_layout Itemize
+Allow conversion between units via two step conversion to mols
+\end_layout
+
+\begin_layout Itemize
+Allow the molar feature to provide answers inline.
+\end_layout
+
+\begin_layout Itemize
+Make the molar page actually do something.
+\end_layout
+
+\begin_layout Itemize
+Reverted some changes to stoich_queries.
+\end_layout
+
+\begin_layout Itemize
+Mark Iodine as diatomic.
+ Fixed long-term bug.
+\end_layout
+
+\begin_layout Itemize
+Make the Molar feature actually...
+ um...
+ do something (still very, very buggy)
+\end_layout
+
+\begin_layout Itemize
+Enable the Molar UI screen.
+\end_layout
+
+\begin_layout Itemize
+Some quick patches to make the stoichiometer work like a...
+ fancy version of the balancer.
+\end_layout
+
+\begin_layout Itemize
+Place the balancer in stoichiometry mode.
+\end_layout
+
+\begin_layout Itemize
+Begin to implement the stoichiometer Web GUI.
+\end_layout
+
+\begin_layout Itemize
+Preliminary change to allow for stoichiometric calculation using a pre-balanced
+ structure.
+\end_layout
+
+\begin_layout Itemize
+Wowee, we can complete single replacement reactions!!!
+\end_layout
+
+\begin_layout Itemize
+Recognize single replacement reactions.
+\end_layout
+
+\begin_layout Itemize
+Complete neutralization reactions, too.
+\end_layout
+
+\begin_layout Itemize
+For completeness sake, the remaining neutralization reaction combinations.
+\end_layout
+
+\begin_layout Itemize
+Match neutralization, another double replacement ordering, synthesis, and
+ decomposition reactions!!!
+\end_layout
+
+\begin_layout Itemize
+Expose reaction type info in the Web interface!
+\end_layout
+
+\begin_layout Itemize
+Enable compound calculations in the CLI, too.
+\end_layout
+
+\begin_layout Itemize
+Fixed name to formula as well.
+\end_layout
+
+\begin_layout Itemize
+Some bugfixes to allow for conversions involving a single compound.
+\end_layout
+
+\begin_layout Itemize
+And add support for stoichiometry with no output type.
+\end_layout
+
+\begin_layout Itemize
+Stoichiometry works in the chemcli DSL.
+\end_layout
+
+\begin_layout Itemize
+Started to add stoichiometry to command-line interface.
+\end_layout
+
+\begin_layout Itemize
+Wow.
+ The complete stoichiometry API!
+\end_layout
+
+\begin_layout Itemize
+Use the simplified way of entering input quantities.
+\end_layout
+
+\begin_layout Itemize
+Made sure the existing balancing logic continues to work.
+\end_layout
+
+\begin_layout Itemize
+Added stoichiometric input to the word equation grammar.
+\end_layout
+
+\begin_layout Itemize
+Inserted stoichiometric support into the symbolic equation grammar.
+\end_layout
+
+\begin_layout Itemize
+Added DCG rules to allow combining compounds with stoichiometric information.
+\end_layout
+
+\begin_layout Itemize
+The stoich_limited calculation has now been converted, too.
+\end_layout
+
+\begin_layout Itemize
+stoich_simple now re-unified.
+ Things are much simpler.
+\end_layout
+
+\begin_layout Itemize
+I think the units module has finally been unified.
+\end_layout
+
+\begin_layout Itemize
+Fixed up the query format when producing output.
+\end_layout
+
+\begin_layout Itemize
+Convert simple units to the new format.
+\end_layout
+
+\begin_layout Itemize
+Made the format more consistent.
+\end_layout
+
+\begin_layout Itemize
+Adjusted format for the quantity DCG to match the rest of Chemlogic.
+\end_layout
+
+\begin_layout Itemize
+BACK-OUT the new quantity and query DCG formats.
+ They add unnecessary complexity.
+ AAAH!
+\end_layout
+
+\begin_layout Itemize
+Try to change stoich_limited to the new format.
+\end_layout
+
+\begin_layout Itemize
+Made stoich_simple use the AST.
+\end_layout
+
+\begin_layout Itemize
+Made the units module use the new ASTs.
+ Maybe it is easier to understand and manipulate?
+\end_layout
+
+\begin_layout Itemize
+A start of some simplified ideas involving the quantity struct.
+\end_layout
+
+\begin_layout Itemize
+Modularized the quantity grammar.
+\end_layout
+
+\begin_layout Itemize
+Finished the quantities grammar.
+\end_layout
+
+\begin_layout Itemize
+Created a new quantity grammar to allow expressing user queries.
+\end_layout
+
+\begin_layout Itemize
+Made some adjustments to the structure of the stoichiometry features in
+ order to develop the user interface.
+\end_layout
+
+\begin_layout Itemize
+Revised menu items for future features.
+\end_layout
+
+\begin_layout Itemize
+Replaced the future development menu items with the latest planned features.
+\end_layout
+
+\begin_layout Itemize
+Fixed a slight mistake in the word_equation grammar: formatting is not used
+ in this case.
+\end_layout
+
+\begin_layout Itemize
+Corrected the same dumb mistake with the missing quotes but, now, in the
+ word equations.
+\end_layout
+
+\begin_layout Itemize
+Improved wording of some symbolic equation messages and enabled reaction
+ completion for word equations!
+\end_layout
+
+\begin_layout Itemize
+Added a new error message to explain problems with reaction type analysis/comple
+tion.
+\end_layout
+
+\begin_layout Itemize
+Improved code formatting and removed debugging statements.
+\end_layout
+
+\begin_layout Itemize
+Improved the wording of some solver error messages.
+\end_layout
+
+\begin_layout Itemize
+Improved the linear equation evaluation error message to more clearly explain
+ the mistake in question and removed examples of issues that are in fact
+ detected and explained by the unbalancable equations feature.
+\end_layout
+
+\begin_layout Itemize
+Revised the symbolic equation grammar messages to reflect the new reaction
+ type analysis features.
+\end_layout
+
+\begin_layout Itemize
+Added a corrector for a common mistake: Ionic compound formula subscripts
+ that don't actually make any sense.
+\end_layout
+
+\begin_layout Itemize
+Whew...
+ Fixed (I think) the mysterious stop in the middle of a formula.
+ I hope it is only a case of optimization gone too far.
+\end_layout
+
+\begin_layout Itemize
+Some experiments to identify why the symbolic equation grammar explodes
+ when a list of elements is not provided.
+\end_layout
+
+\begin_layout Itemize
+Chemlogic can now complete double replacement reactions (just a few bugfixes
+ to make it actually fit in the user interface.
+\end_layout
+
+\begin_layout Itemize
+Experimental code to allow for generating double replacement reactions (and
+ possibly single replacement reaction).
+\end_layout
+
+\begin_layout Itemize
+Merge branch 'stoichiometry' into type_info We need some new extensions
+ to balancer added by stoichiometry.
+\end_layout
+
+\begin_layout Itemize
+Added the empty new reaction type analysis.
+\end_layout
+
+\begin_layout Itemize
+Added a new error message for nonsensical unit conversions.
+\end_layout
+
+\begin_layout Itemize
+Wrote error message to explain why you cannot calculate excess quantities
+ if you do not know the original quantity.
+\end_layout
+
+\begin_layout Itemize
+Started to add error checking for stoichiometry.
+\end_layout
+
+\begin_layout Itemize
+Combine the significant figures with the stoichiometry structs to simplify
+ a lot of code and allow for mostly correct significant figures interpretation
+ in excess quantities problems.
+\end_layout
+
+\begin_layout Itemize
+Unified calculation for almost all of the stoichiometric features supported
+ in Chemlogic.
+\end_layout
+
+\begin_layout Itemize
+Added a file block for excess.pl
+\end_layout
+
+\begin_layout Itemize
+Improved the Chemlogic README, to discuss actually running it.
+\end_layout
+
+\begin_layout Itemize
+Cut useless choicepoints.
+\end_layout
+
+\begin_layout Itemize
+One function solving for stoichiometry of excess quantities.
+\end_layout
+
+\begin_layout Itemize
+Chemlogic is now able to perform stoichiometry of excess quantities (in
+ pieces).
+\end_layout
+
+\begin_layout Itemize
+Oops, what if we do not want to know something?
+\end_layout
+
+\begin_layout Itemize
+Now, we can correctly calculate the amount actually reacted/produced.
+\end_layout
+
+\begin_layout Itemize
+Broken attempt at stoichiometry of excess quantities.
+\end_layout
+
+\begin_layout Itemize
+Modify the limiting reactant calculation to produce the mols of each substance
+ (which is generated anyway).
+\end_layout
+
+\begin_layout Itemize
+Move the stoichiometry of excess quantities code experiments into their
+ own file.
+\end_layout
+
+\begin_layout Itemize
+Removed unecessary cut operations.
+\end_layout
+
+\begin_layout Itemize
+A tiny change, turning on optimization, speeds up some parts of Chemlogic
+ dramatically.
+\end_layout
+
+\begin_layout Itemize
+Clarified comments and removed unused rules.
+\end_layout
+
+\begin_layout Itemize
+Simplified the nonzero sequence to, in fact, represent a non-null sequence
+ (leading zeros means that zeros would never reach this rule, in the first
+ place)
+\end_layout
+
+\begin_layout Itemize
+Made the DCG more efficient by testing for nonzero because this will only
+ happen once per number, as opposed to retrying.
+\end_layout
+
+\begin_layout Itemize
+[M] Fixed formatting in the README
+\end_layout
+
+\begin_layout Itemize
+Updated TODOs: It's getting there!
+\end_layout
+
+\begin_layout Itemize
+Mark stoichiometer executable.
+\end_layout
+
+\begin_layout Itemize
+A minimal interface for entering coherent stoichiometric calculations.
+\end_layout
+
+\begin_layout Itemize
+Added PLDoc comments for two more balancer functions.
+\end_layout
+
+\begin_layout Itemize
+Clarified PLDoc to add that some numbers are expected to be integers.
+\end_layout
+
+\begin_layout Itemize
+Improved PLDoc blocks by adding types (from memory).
+\end_layout
+
+\begin_layout Itemize
+Corrected and improved PlDoc comments for the balancer (changes necessitated
+ by the implementation of stoichiometry.
+\end_layout
+
+\begin_layout Itemize
+Added documentation blocks to stoichiometry code.
+\end_layout
+
+\begin_layout Itemize
+Corrected documentation blocks for many different files.
+\end_layout
+
+\begin_layout Itemize
+Added a file block for the chemcli API, and correct a few other blocks.
+\end_layout
+
+\begin_layout Itemize
+Updated Chemlogic copyright year!!!
+\end_layout
+
+\begin_layout Itemize
+Fixed the generic calculation predicates: in this clause, some aspects of
+ the result must be known, while others must be unknown.
+ The variable may be in either term.
+\end_layout
+
+\begin_layout Itemize
+Created generic calculation predicates for the concentration/volume calculations.
+\end_layout
+
+\begin_layout Itemize
+First attempt at generic calculation predicates.
+\end_layout
+
+\begin_layout Itemize
+Removed experimental code we do not need anymore.
+\end_layout
+
+\begin_layout Itemize
+Some fixes to ensure that our significant figures logic actually handles
+ the numbers first.
+\end_layout
+
+\begin_layout Itemize
+Made the stoichiometric code calculate the number of significant figures
+ and only produce answers to the lowest precision.
+\end_layout
+
+\begin_layout Itemize
+Almost correct rounding logic.
+\end_layout
+
+\begin_layout Itemize
+Simplified and greatly clarified the sigfigs logic, with clear comments.
+\end_layout
+
+\begin_layout Itemize
+Some correct rounding logic (in PHP).
+\end_layout
+
+\begin_layout Itemize
+Complete significant figures counting, except for scientific notation.
+\end_layout
+
+\begin_layout Itemize
+A correct new significant figures rule.
+\end_layout
+
+\begin_layout Itemize
+Solved the volume/concentration dilemma.
+\end_layout
+
+\begin_layout Itemize
+Modified sigfigs logic (still does not really work).
+\end_layout
+
+\begin_layout Itemize
+Try to determine whether leading zeros in decimals are significant (e.g.
+ 0./000/5 is not significant, 3./000/5 is significant).
+\end_layout
+
+\begin_layout Itemize
+An inefficient attempt at determining the number of significiant figures
+ in a number.
+\end_layout
+
+\begin_layout Itemize
+Added cut so Prolog does not try to find a different way of...
+ uh...
+ converting from moles to moles.
+\end_layout
+
+\begin_layout Itemize
+Standardized the format of the unit predicates to allow more flexibility
+ in stoichiometric calculations.
+\end_layout
+
+\begin_layout Itemize
+Clearly indicate the units of molar volume.
+\end_layout
+
+\begin_layout Itemize
+Allow both the input and output to be in mol units, by creating a conversion
+ rule that does nothing.
+\end_layout
+
+\begin_layout Itemize
+Make the spacing around operators consistent.
+\end_layout
+
+\begin_layout Itemize
+Automate the use of the bsd2make script.
+\end_layout
+
+\begin_layout Itemize
+Simplified Makefile and restored compatability with BSD make.
+\end_layout
+
+\begin_layout Itemize
+Modify the balancer interface to expose the chemical equation structures
+ generated by the parser.
+\end_layout
+
+\begin_layout Itemize
+Added simple stoichiometry calculation: it works!
+\end_layout
+
+\begin_layout Itemize
+Added reference explaining source of Vm.
+\end_layout
+
+\begin_layout Itemize
+Corrected incorrect parameter usage for gas volume calculations, added cut
+ to prevent useless alternative solutions
+\end_layout
+
+\begin_layout Itemize
+Added concentration units
+\end_layout
+
+\begin_layout Itemize
+Added unit calculation support (mass, volume [gas only]).
+\end_layout
+
+\begin_layout Itemize
+Added cuts to ensure that only the actual molar mass is produced as a solution.
+\end_layout
+
+\begin_layout Itemize
+We can now calculate molar mass.
+\end_layout
+
+\begin_layout Itemize
+Declared the mass fact to be discontiguous.
+\end_layout
+
+\begin_layout Itemize
+Added atomic masses for stoichiometry.
+\end_layout
+
+\begin_layout Itemize
+All opened tags must be closed -- this bug lead to a really hard to track
+ down display problem in the android app.
+\end_layout
+
+\begin_layout Itemize
+Implement the code to set the background-color of tokens.
+\end_layout
+
+\begin_layout Itemize
+Added the html_android_textview output format, which will allow for formatted
+ text in the App.
+\end_layout
+
+\begin_layout Itemize
+Merge branch 'build' into android.
+ This contains some important changes to the build system to make versioning
+ work better with the Android application.
+\end_layout
+
+\begin_layout Itemize
+Improved the API startup identification.
+\end_layout
+
+\begin_layout Itemize
+SWI-Prolog behaves differently depending on whether the application is run
+ using the SWI-Prolog binary (the program name is not included in the argv
+ flag) and when it is run as a native executable (the program name *is*
+ included).
+ This commit will just try both possibilities.
+\end_layout
+
+\begin_layout Itemize
+Ignore the Buildinfo file, it is created by the tagging process and records
+ only version information.
+\end_layout
+
+\begin_layout Itemize
+Merge branch 'master' into build.
+ Imported API message.
+\end_layout
+
+\begin_layout Itemize
+Added a simple version identification message for the API startup.
+\end_layout
+
+\begin_layout Itemize
+Disambiguated prefix to cf_prefix.
+\end_layout
+
+\begin_layout Itemize
+Removed some blank lines to allow room for some new directives to be added
+ to the dist file.
+\end_layout
+
+\begin_layout Itemize
+Correct incorrect spacing in the ANSI format arrow symbol.
+\end_layout
+
+\begin_layout Itemize
+Moved print rule back to the main DSL file and removed the echo predicate.
+ I do not know which method is better, but perhaps print can be used in
+ DSL programs to communicate with the user.
+\end_layout
+
+\begin_layout Itemize
+Quick attempt to add printing the output to the DSL.
+\end_layout
+
+\begin_layout Itemize
+Make the API mode echo the output of the DSL rule to stdout, so that it
+ can be captured and used.
+\end_layout
+
+\begin_layout Itemize
+Added the API logic to the chemcli interface.
+ Some work still remains.
+\end_layout
+
+\begin_layout Itemize
+Added the ANSI output format and changed the CLI error handler to use the
+ output formatting system to highlight errors.
+\end_layout
+
+\begin_layout Itemize
+[BUG] BSDMakefile is out of date because the conversion script is missing.
+\end_layout
+
+\begin_layout Itemize
+Support DESTDIR and do not crash when the web interface is not built.
+\end_layout
+
+\begin_layout Itemize
+Modified Makefile to support alternate paths to Prolog, and the framework
+ for supporting other Prolog systems.
+\end_layout
+
+\begin_layout Itemize
+OOPS.
+ We want make to copy the actual style contents as opposed to a symlink
+ (we do not want to refer to the source directory.
+\end_layout
+
+\begin_layout Itemize
+Moved compile.cf and other build-related tools to their own directory, to
+ avoid littering the project root.
+\end_layout
+
+\begin_layout Itemize
+Load Web Interface main files before running directives --- quiets down
+ startup
+\end_layout
+
+\begin_layout Itemize
+Made chemweb-daemon use compilable clfacts and also use the same styles
+ as chemweb.
+\end_layout
+
+\begin_layout Itemize
+Oops, make sure that if prefix/1 is undefined we used ./ as the style_dir.
+\end_layout
+
+\begin_layout Itemize
+Finally, a solution to compile.cf
+\end_layout
+
+\begin_layout Itemize
+Catch error if prefix/1 is not configured.
+\end_layout
+
+\begin_layout Itemize
+Added a new predicate to automate registering files with SWI-Prolog.
+\end_layout
+
+\begin_layout Itemize
+Finished converting the Web interface to use the runtime style path detection.
+\end_layout
+
+\begin_layout Itemize
+Re-generated BSD makefile and add header comments regarding auto-generation
+\end_layout
+
+\begin_layout Itemize
+Added info header to Makefile
+\end_layout
+
+\begin_layout Itemize
+A proper working Makefile under both BSD and GNU makes
+\end_layout
+
+\begin_layout Itemize
+Make sure that compile.cf is reset to default when cleaning.
+\end_layout
+
+\begin_layout Itemize
+Nearly finished properly organizing the Makefile
+\end_layout
+
+\begin_layout Itemize
+Corrected dependency information to allow some archive building in parallel.
+\end_layout
+
+\begin_layout Itemize
+Added a configuration file to hold the prefix determined by make, so that
+ Chemlogic can locate its files.
+\end_layout
+
+\begin_layout Itemize
+Fixed Makefile to include correct install target.
+\end_layout
+
+\begin_layout Itemize
+Added dynamic location of style files.
+ Is this the best solution?
+\end_layout
+
+\begin_layout Itemize
+Barium was incorrectly listed under the alkali metals heading -- moved to
+ alkaline earth metals
+\end_layout
+
+\begin_layout Itemize
+Renamed iface to interface, corrected install target and added help target
+\end_layout
+
+\begin_layout Itemize
+Added some more TeX related files to gitignore and also excluded everything
+ in bin/ except README
+\end_layout
+
+\begin_layout Itemize
+.gitignore and a Makefile -- just an experiment
+\end_layout
+
+\begin_layout Itemize
+Added package building script --- maybe replace with a Makefile?
+\end_layout
+
+\begin_layout Itemize
+Added some source files for the Chemlogic papers (need to check if they
+ correspond to PDF and produce correct PDF when compiled)
+\end_layout
+
+\begin_layout Itemize
+Added cobalt.
+\end_layout
+
+\begin_layout Itemize
+Added PDF documentation
+\end_layout
+
+\begin_layout Itemize
+Updated references to documentation
+\end_layout
+
+\begin_layout Itemize
+IUPAC-ize the program
+\end_layout
+
+\begin_layout Itemize
+Various quick fixes to scripts to avoid portability problems
+\end_layout
+
+\begin_layout Itemize
+Finished the TODO
+\end_layout
+
+\begin_layout Itemize
+Commented up build.sh
+\end_layout
+
+\begin_layout Itemize
+READ ME
+\end_layout
+
+\begin_layout Itemize
+Fixed the build script.
+\end_layout
+
+\begin_layout Itemize
+A much simpler building system
+\end_layout
+
+\begin_layout Itemize
+Working on an install process
+\end_layout
+
+\begin_layout Itemize
+Some TODOs
+\end_layout
+
+\begin_layout Itemize
+Whoa! Everything has a top comment now!
+\end_layout
+
+\begin_layout Itemize
+Process - General (IX)
+\end_layout
+
+\begin_layout Itemize
+Process - General (IIX)
+\end_layout
+
+\begin_layout Itemize
+Process - General (VII)
+\end_layout
+
+\begin_layout Itemize
+Process - General (VI), Data - Debug (II)
+\end_layout
+
+\begin_layout Itemize
+Process - General (V), Data - Debug (I)
+\end_layout
+
+\begin_layout Itemize
+Process is overloaded (IV)
+\end_layout
+
+\begin_layout Itemize
+Process to General (III)
+\end_layout
+
+\begin_layout Itemize
+Process to General (II)
+\end_layout
+
+\begin_layout Itemize
+All the way to 99: that should do.
+\end_layout
+
+\begin_layout Itemize
+Remove manual wrapping from messages
+\end_layout
+
+\begin_layout Itemize
+Merge branch 'type_domain_error' This makes everything work, at least.
+\end_layout
+
+\begin_layout Itemize
+Auto-wrap message but preserve indenting and newlines!
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggestion: people do not understand spurious, extraneous and malformed.
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir correction: non-metalide (III) and my correction: Allotrope
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir correction: non-metalide (II)
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir Corrections: Non-metal ide (I)
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested correction: a consistency fix and a spelling correction
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir correction: acid is not a suffix
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested correction: Remove obsolete commented code
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir corrections: not necessarily a compound; use chemical name instead.
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested corrections: Avoid saying token, nobody understands
+\end_layout
+
+\begin_layout Itemize
+Quick fix: consistent 1 or one
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested corrections: Avoid saying operator, people do not understand
+ (2A)
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested corrections: Avoid saying operator, people do not understand
+ (1A)
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested corrections: Do not use evaluate; people do not understand.
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested corrections: Do not use parse; people do not understand.
+\end_layout
+
+\begin_layout Itemize
+Mr.
+ Tchir suggested corrections: ordering (I)
+\end_layout
+
+\begin_layout Itemize
+hydrogen peroxide special case.
+\end_layout
+
+\begin_layout Itemize
+Remove spaces from hydrates
+\end_layout
+
+\begin_layout Itemize
+Moduarize it!
+\end_layout
+
+\begin_layout Itemize
+Retrofit domain errors into the error handlers.
+\end_layout
+
+\begin_layout Itemize
+Added in messages for our domain errors.
+\end_layout
+
+\begin_layout Itemize
+Added type errors to web_error.
+\end_layout
+
+\begin_layout Itemize
+Error handler for the web interface: type errors
+\end_layout
+
+\begin_layout Itemize
+So far: a huge mess that makes messages for type errors.
+\end_layout
+
+\begin_layout Itemize
+So far, the error handling is a bit messed up.
+\end_layout
+
+\begin_layout Itemize
+Make the error pre-processor syntax_error specific, too.
+\end_layout
+
+\begin_layout Itemize
+Oops: incorrect parenthesization.
+\end_layout
+
+\begin_layout Itemize
+Made the current error handlers specific to syntax errors
+\end_layout
+
+\begin_layout Itemize
+Added domain_errors for all of the current possible failure points.
+\end_layout
+
+\begin_layout Itemize
+Make the subscript for polyatomic groups...
+ actually subscripted.
+\end_layout
+
+\begin_layout Itemize
+Let's be really fancy: a tooltip that lets the user know why the item is
+ disabled.
+\end_layout
+
+\begin_layout Itemize
+Fixed bugs found during user testing.
+ 1.
+ Example in chemcli doesn't work -- types swapped.
+ 2.
+ baking soda does not have exactly the same struct as sodium carbonate.
+ 3.
+ ; instead of , in chemweb breaks everything subtly.
+\end_layout
+
+\begin_layout Itemize
+Added error handling to compounder.
+ THIS COMPLETES THE REQUIRED FEATURES FOR CHEMLOGIC!!! !!! !!!
+\end_layout
+
+\begin_layout Itemize
+Styling for errors.
+\end_layout
+
+\begin_layout Itemize
+Correctly indented web_error and fixed class names.
+\end_layout
+
+\begin_layout Itemize
+Cleaned up the outputting with a common function.
+\end_layout
+
+\begin_layout Itemize
+A new error handling setup for the web interface..
+\end_layout
+
+\begin_layout Itemize
+Changed the debugging system to avoid trouble and allow for better output
+ in web interface AND to remove three unnecessary functions.
+\end_layout
+
+\begin_layout Itemize
+A new theory: rethrow, with module-specific handlers.
+\end_layout
+
+\begin_layout Itemize
+Test API change for web interface.
+\end_layout
+
+\begin_layout Itemize
+Converted the web interface to use the new parsers
+\end_layout
+
+\begin_layout Itemize
+Make the balancer the default page if none is chosen
+\end_layout
+
+\begin_layout Itemize
+A nice message for the Web Interface, too.
+\end_layout
+
+\begin_layout Itemize
+Removed CLI specific functions from IO.
+\end_layout
+
+\begin_layout Itemize
+An elegant command line interface for chemlogic.
+\end_layout
+
+\begin_layout Itemize
+Add another type error, for the matrix builder.
+\end_layout
+
+\begin_layout Itemize
+Added a type error for when the equation struct cannot be tabulated.
+\end_layout
+
+\begin_layout Itemize
+Some more ugly hacks to allow pure compounds to work correctly.
+\end_layout
+
+\begin_layout Itemize
+Added more retained names because I do not feel like getting to work.
+\end_layout
+
+\begin_layout Itemize
+Make sure that the polyatomic ions are loaded in defined order; this will
+ make sure that ClO4 loads before ClO.
+\end_layout
+
+\begin_layout Itemize
+Added some more common names of chemicals.
+\end_layout
+
+\begin_layout Itemize
+Really broken stuff --- now will it balance?
+\end_layout
+
+\begin_layout Itemize
+Some fixes that allow single-element covalents and that just use systematic
+ naming for an organic that cannot be figured out (reverse).
+\end_layout
+
+\begin_layout Itemize
+Allow multiple single elements; covalent
+\end_layout
+
+\begin_layout Itemize
+We need something that is actually unbound for this test.
+\end_layout
+
+\begin_layout Itemize
+Changed some error messages to use mark, clarified some more messages and
+ broadened a few.
+\end_layout
+
+\begin_layout Itemize
+A new type of token that just marks one character
+\end_layout
+
+\begin_layout Itemize
+Nearly finished setting up the error messages for word equations.
+\end_layout
+
+\begin_layout Itemize
+Some small changes to allow the equation parsers to override their compound
+ parsers.
+\end_layout
+
+\begin_layout Itemize
+Finished (I think) with all of the clear formula error messages!
+\end_layout
+
+\begin_layout Itemize
+Changed to new syntax for error messages in the balancer.
+\end_layout
+
+\begin_layout Itemize
+Added a new token type, for dealing with parenthesized stuff.
+\end_layout
+
+\begin_layout Itemize
+Improved the quality of the error highlighting (parenthesized stuff) and
+ also clarified a message.
+\end_layout
+
+\begin_layout Itemize
+Oops, we cannot go busting the reverse mode for using an explicit 1
+\end_layout
+
+\begin_layout Itemize
+Fixed up our silly interface to use the parse/3 predicate.
+ And also removed some stuff that was troubling the parsers.
+\end_layout
+
+\begin_layout Itemize
+Correct mode declarations for meta predicate
+\end_layout
+
+\begin_layout Itemize
+Ionic needs yet another error message to straighten things out.
+\end_layout
+
+\begin_layout Itemize
+We still need to indicate which module we want handling failures and leftovers.
+\end_layout
+
+\begin_layout Itemize
+Unfortunately, we had to re-organize the catch-all guidance.
+\end_layout
+
+\begin_layout Itemize
+Covalent, too.
+\end_layout
+
+\begin_layout Itemize
+Switched nearly everything over to the new way of declaring error messages.
+\end_layout
+
+\begin_layout Itemize
+Meta programming the error handling for lots of fun.
+\end_layout
+
+\begin_layout Itemize
+Finished the ugly hack that allows the covalent parser to work properly.
+\end_layout
+
+\begin_layout Itemize
+Use our brand new xx operator!
+\end_layout
+
+\begin_layout Itemize
+Another quick hack to explain error and some more messages.
+\end_layout
+
+\begin_layout Itemize
+The error messages for the equation parser, so far
+\end_layout
+
+\begin_layout Itemize
+Checked off a lot of tasks and improved the error message guidance for all
+ of the names
+\end_layout
+
+\begin_layout Itemize
+Fixed the pure substance bug, added an error message, fixed up the equation
+ parsers.
+\end_layout
+
+\begin_layout Itemize
+Converted the word equation parser to use the new formula parser.
+\end_layout
+
+\begin_layout Itemize
+The arrow is required.
+\end_layout
+
+\begin_layout Itemize
+Whoa: finished adding in all of the error messages, modularized the compounder.
+\end_layout
+
+\begin_layout Itemize
+Had to reduce some of the error messages in the ionic parser
+\end_layout
+
+\begin_layout Itemize
+A few more "CORRECTORS" here and there.
+\end_layout
+
+\begin_layout Itemize
+Finished adding in all of the syntax errors for the Chemlogic program.
+ Just a few ugly hacks.
+\end_layout
+
+\begin_layout Itemize
+The ionic parser has nearly enough error messages, now.
+\end_layout
+
+\begin_layout Itemize
+This will work for now.
+ It is still quite ugly, but it starts giving the user clear error messages.
+\end_layout
+
+\begin_layout Itemize
+Some better formatting; some better error messages
+\end_layout
+
+\begin_layout Itemize
+So far, so good...
+ Ionic has two error messages.
+\end_layout
+
+\begin_layout Itemize
+Added all the guidance messages for formulas, now it is on to compounds.
+\end_layout
+
+\begin_layout Itemize
+Fixed up some more tokenization rules.
+\end_layout
+
+\begin_layout Itemize
+Scan rules can now handle everything that has been error-ifyed so far, I
+ think.
+\end_layout
+
+\begin_layout Itemize
+Fixed up the tokenizing rules; now nearly universal and almost perfect (the
+ bracket rules)
+\end_layout
+
+\begin_layout Itemize
+Fixed an issue; element no longer blows up on those ion/compounds, the program
+ can now clearly explain what is wrong with (NH4)2.
+\end_layout
+
+\begin_layout Itemize
+The work so far: most error messages in; a few defects; better tokenization.
+\end_layout
+
+\begin_layout Itemize
+The start of adding parser error messages to the formula parser.
+\end_layout
+
+\begin_layout Itemize
+Added the new acid.pl file.
+\end_layout
+
+\begin_layout Itemize
+Some formatting fixes to an ugly piece of code.
+\end_layout
+
+\begin_layout Itemize
+Really finished fixing up the oxyanion handling.
+\end_layout
+
+\begin_layout Itemize
+Fixed some massive slowness...
+\end_layout
+
+\begin_layout Itemize
+Finished applying the new oxyanion handling.
+\end_layout
+
+\begin_layout Itemize
+Finished the oxyanion processing for formulas; onto names.
+\end_layout
+
+\begin_layout Itemize
+Almost finished fixing the faster oxyanion support.
+\end_layout
+
+\begin_layout Itemize
+Restored a few more ugly hacks to improve the performance even further.
+\end_layout
+
+\begin_layout Itemize
+Re-added a hack that allows for faster operation in reverse.
+\end_layout
+
+\begin_layout Itemize
+The new and improved parser is faster than the old one! (Just get rid of
+ the oxyanion stuff --- everything else is just as fast.
+\end_layout
+
+\begin_layout Itemize
+Another round of hacks really improves the performance.
+\end_layout
+
+\begin_layout Itemize
+An ugly hack that improves the performance.
+\end_layout
+
+\begin_layout Itemize
+Eliminate a rule that selects between user format and other formats -- it
+ is unnecessary if the original rule is re-written
+\end_layout
+
+\begin_layout Itemize
+Finished re-writting the parser.
+ It will no longer consider NO2 to be nitrite when it is on its own (by
+ requiring that at least one more pair be present when an ion is detected.)
+ It will also force hydrates to be last.
+\end_layout
+
+\begin_layout Itemize
+Nearly finished re-writting the parser.
+\end_layout
+
+\begin_layout Itemize
+Raise the dot in output and lower the 2 in H2O, for hydrates.
+ Still hacky.
+\end_layout
+
+\begin_layout Itemize
+Add support for hydrates in formulas and ionic compounds.
+ A bit hacky.
+\end_layout
+
+\begin_layout Itemize
+Added some missing elements and charges; allow noble gas covalent compounds.
+\end_layout
+
+\begin_layout Itemize
+Commented up the web interface and output formats.
+ Does not really require PlDoc.
+\end_layout
+
+\begin_layout Itemize
+Modularized symbolic and word equations to avoid conflicts, fixed a tiny
+ bug in the output formatting.
+\end_layout
+
+\begin_layout Itemize
+Rename all sorts of functions to make them logical, add some PlDoc, modularize
+\end_layout
+
+\begin_layout Itemize
+Get rid of some inconsistencies: VarS, Vars, Values, etc.
+ plus disambiguate the term coefficient: It is for the chemical equation
+ coefficient only.
+\end_layout
+
+\begin_layout Itemize
+Change most includes to consults for clearer diagnostics; repair a corrupted
+ font file and some indenting fixes.
+\end_layout
+
+\begin_layout Itemize
+Try another parser generator, perhaps.
+\end_layout
+
+\begin_layout Itemize
+Added a style guide, and a lot of wondering about error checking and handling.
+\end_layout
+
+\begin_layout Itemize
+An idea re: renaming input fields
+\end_layout
+
+\begin_layout Itemize
+Add some odd elements, just for fun.
+\end_layout
+
+\begin_layout Itemize
+Added most common elements and ions (from list)
+\end_layout
+
+\begin_layout Itemize
+Added some more elements, including the confusing mercury(I) ion
+\end_layout
+
+\begin_layout Itemize
+DB extension: common name: prussic acid = HCN
+\end_layout
+
+\begin_layout Itemize
+Correct the naming rules for acids: acids not containing oxygen get a prefix,
+ regardless of whether or not they involve polyatomic groups.
+ Also, prevent some ions from forming acids.
+\end_layout
+
+\begin_layout Itemize
+Some cleanup work: remove the singleton variables and an unused file.
+\end_layout
+
+\begin_layout Itemize
+Store formatted group_symbol as well, in order to allow subscripts in group
+ formulas.
+ Switch some things to ensure_loaded to prevent double loading problems.
+\end_layout
+
+\begin_layout Itemize
+Allow the various interfaces to change the output format themselves.
+\end_layout
+
+\begin_layout Itemize
+The plan for fixing a few issues related to output formats.
+\end_layout
+
+\begin_layout Itemize
+Stop the menu from running over two lines
+\end_layout
+
+\begin_layout Itemize
+Some code needed to be changed to allow the output formats to be used
+\end_layout
+
+\begin_layout Itemize
+Finally! Use the new output formatting features.
+ Subscripts and fancy arrows.
+\end_layout
+
+\begin_layout Itemize
+Use the common definition of numbers upto 20
+\end_layout
+
+\begin_layout Itemize
+Finished enough styling for now.
+ Looks pretty fancy now.
+\end_layout
+
+\begin_layout Itemize
+Improve the error messages somewhat, add some red to signify error and include
+ some unfinished projects in the menu
+\end_layout
+
+\begin_layout Itemize
+Make the problems go away (see master re: carbonite)
+\end_layout
+
+\begin_layout Itemize
+Remove carbonite, because it is very rare and causes inconsistent formulas
+ for carbon dioxide
+\end_layout
+
+\begin_layout Itemize
+Added the rest of the forms and some styling
+\end_layout
+
+\begin_layout Itemize
+Make the balancer shut up! Now, the web interface will work
+\end_layout
+
+\begin_layout Itemize
+The Web interface gets some forms
+\end_layout
+
+\begin_layout Itemize
+More reversing of adding exceptions
+\end_layout
+
+\begin_layout Itemize
+Go back to the parser, before we started tinkering with exceptions.
+\end_layout
+
+\begin_layout Itemize
+I'm not so happy about it.
+ But at least we have exceptions, I guess.
+\end_layout
+
+\begin_layout Itemize
+Added some exceptions
+\end_layout
+
+\begin_layout Itemize
+Added a plan for error handling, some errror handling code, re-factored
+ some common parsing rules
+\end_layout
+
+\begin_layout Itemize
+Longest string must be first.
+ Yeesh.
+\end_layout
+
+\begin_layout Itemize
+Added a rough prototype of the web interface.
+ It has no forms, shows the general structure.
+ Also necessary: adding styling and menus
+\end_layout
+
+\begin_layout Itemize
+Remove some unecessary number rules (explicit 1 and 0)
+\end_layout
+
+\begin_layout Itemize
+Let's use it a bit.
+ Not quite sure if this is efficient, or good even...
+\end_layout
+
+\begin_layout Itemize
+Add a stupid output formatting library
+\end_layout
+
+\begin_layout Itemize
+Added a predicate which makes all of the values in the system positive,
+ avoiding dumb solutions that do not work
+\end_layout
+
+\begin_layout Itemize
+Amazingly, the old algorithm for determing the charge on a metal given the
+ non-metal subscript and charge is no good.
+ Fixed it with a better one: Total charge (Subscript * Charge) of the non-metal
+ DIVIDED by the number of metal atoms.
+\end_layout
+
+\begin_layout Itemize
+Add manganese (and permanganate), which seems to really show bugs in the
+ system
+\end_layout
+
+\begin_layout Itemize
+Changed the balancer to use a rational number constraint solver; fixes the
+ issue where something with fractional coefficients won't work, also eliminates
+ the need for that tinkering around to stop an instantiation error when
+ the equation is already balanced.
+\end_layout
+
+\begin_layout Itemize
+Add retained.pl from merge.
+\end_layout
+
+\begin_layout Itemize
+Eliminate some backtracking; retained names and common names (no more hydrooxic
+ acid!) and support for "polyatomic" acids (acetic acid) -- which is incomplete
+ (hydrocyanic is correct, not my cyanic acid)
+\end_layout
+
+\begin_layout Itemize
+Initial commit of working, but disorganized program.
+\end_layout
+
+\begin_layout Part
+Implementation History
+\end_layout
+
+\begin_layout Section
+Compounder (2012)
+\end_layout
+
+\begin_layout Standard
+The original version of Chemlogic was the misspelled 
+\emph on
+compunder
+\emph default
+.
+ This version could only convert iconic compound names to formulas and vice-vers
+a.
+ It was written in PHP and had a very simple design.
+\end_layout
+
+\begin_layout Standard
+Instead of implementing a parser with grammatical rules, compunder used
+ two command-line arguments to accept the metal and non-metal components.
+ If a parenthesis was detected in the metal part, a function was used to
+ translate the valence in roman numerals to decimal, which was then used
+ as the charge for the metal.
+\end_layout
+
+\begin_layout Standard
+This version also implemented a quiz program that would create a random
+ ionic compound and ask for its name/formula, depending on the question
+\end_layout
+
+\begin_layout Section
+Prolog Experiments (2013)
+\end_layout
+
+\begin_layout Standard
+After a few months, I decided that I wanted to implement support for covalent
+ compounds and balancing chemical equations.
+ The design of compunder seemed to be unable to support features of this
+ complexity, without a great amount of work.
+\end_layout
+
+\begin_layout Standard
+Around this time, I began to experiment with Prolog, which had built-in
+ support for parsers, through DCGs (Definite Clause Grammars).
+ I stated writing the original parsing rules for chemical equations and
+ formulas.
+\end_layout
+
+\begin_layout Standard
+I studied algorithms for balancing chemical equations, and found a method
+ that used systems of linear equations to represent chemical equations,
+ which was quite convenient, as Prolog had a built-in linear equation solver.
+\end_layout
+
+\begin_layout Section
+Proof-of-Concept Version (2013)
+\end_layout
+
+\begin_layout Standard
+In my Computer Science IDS 10 class, I decided to finish implementing these
+ features.
+ This work took a very long time, as I wanted to implement every naming
+ system used in Science 10.
+ There were very many cases where a parser would produce incorrect output
+ under certain conditions.
+\end_layout
+
+\begin_layout Standard
+I also discovered that my parser design was extremely inefficient.
+ I used inference counting, tracing and other debugging and analysis techniques
+ to find a better design.
+\end_layout
+
+\begin_layout Standard
+After 1 month of development, I had developed all of the features I had
+ planned, but they were not connected to each-other and were spread over
+ many files.
+\end_layout
+
+\begin_layout Section
+Chemlogic 1.0 (2014)
+\end_layout
+
+\begin_layout Standard
+I connected all the pieces of the program together and fixed quite a few
+ bugs.
+ I decided to name the program 
+\begin_inset Quotes eld
+\end_inset
+
+Chemlogic
+\begin_inset Quotes erd
+\end_inset
+
+.
+ It did not have a user interface, at first, because I only intended to
+ utilize the program as a way to study Computer Science.
+\end_layout
+
+\begin_layout Standard
+My teacher for the Computer Science class, Mr.
+ Tchir, wanted to show my program to his Science 10 class, so I decided
+ to implement a Web interface that was user-friendly enough to be actually
+ useful.
+ This required extending the program to support multiple output formats.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+After the presentation, I decided to add one more important feature to the
+ program: error handling.
+ Many times the program would simply give 
+\begin_inset Quotes eld
+\end_inset
+
+no.
+\begin_inset Quotes erd
+\end_inset
+
+ as the answer when incorrect input was given, making it very difficult
+ to track down the error.
+ I wanted the program to be able to give a message explaining what was wrong
+ with the input, and, if possible, to highlight only the incorrect part
+ of the input.
+ This feature was implemented in my Computer Science IDS 11 class.
+\end_layout
+
+\begin_layout Standard
+As it turned out, error handling took nearly as long to implement as the
+ rest of the program and uncovered many bugs in the parsers.
+ I wrote error messages for nearly every syntax error possible in each grammar
+ (e.g.
+ formulas, names, equations, etc.)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+After finishing this feature, I decided that I was done with the program
+ and could finally move on to other experiments I had planned for the year.
+\end_layout
+
+\begin_layout Standard
+Mr.
+ Tchir then told me about the West Kootenay Regional Science Fair, which
+ was coming up in two weeks, and suggested that I enter the program.
+ I then spent the two weeks writing a technical paper and a display.
+\end_layout
+
+\begin_layout Standard
+My project won at the local fair, and I attended the Canada-Wide Science
+ Fair.
+\end_layout
+
+\begin_layout Section
+Chemlogic 2.0 (2014---2015)
+\end_layout
+
+\begin_layout Standard
+The next year, I decided to continue to develop my project, and hopefully
+ win the local science fair again.
+ Many people suggested that I develop an Android App, so that more students
+ could use Chemlogic as a study tool.
+ I also considered many other features I could develop, and decided on reaction
+ type analysis (to complete the Science 10 curriculum) and stoichiometry
+ (an entirely new branch of chemistry).
+ My goal was to almost double the number of features in Chemlogic.
+ But, this year, I had only half the time to work.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Developing the Android App took an extremely long time and required a lot
+ of research and experimentation.
+ The most important aspect of the App development was to find a way to use
+ the existing Prolog code of Chemlogic on a mobile phone.
+ I first tested a few JVM-based Prolog implementations, which could allow
+ Prolog code to be integrated directly into the Android App code, but they
+ were all incomplete and poorly-designed.
+ Using the development tools provided by Google to cross-compile a fully-functio
+nal Prolog implementation proved futile, as the Android C library was not
+ compatible with any of the Prolog implementations I tested.
+ Finally, I made a breakthrough when I discovered the Angstrom distribution
+ and toolchain, which provided a way to cross-compile programs for Android
+ using the real GNU C library and other Linux libraries.
+ Once I developed a working cross-compilation process, I used Make to automate
+ building SWI-Prolog and Chemlogic for ARM, in order to avoid making time-consum
+ing mistakes when compiling manually.
+\end_layout
+
+\begin_layout Standard
+After I managed to get Chemlogic to run on an Android device, I had to research
+ a way for Chemlogic to be bootstrapped by the App user interface.
+ This, too, proved complex, but I designed a simple script that used the
+ dynamic linker to locate Chemlogic's dependencies and start the program.
+ The user interface of the App was simple and straightforward to develop.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Next, I implemented stoichiometry.
+ Because of the existing modular design of Chemlogic, I could immediately
+ develop new code to manipulate ASTs (Abstract Syntax Trees) generated by
+ parsers, without needing to rewrite existing code.
+ The manipulation of ASTs became the focus of the new features I developed.
+ Unlike the chemical equation balancing process, the methods required to
+ perform stoichiometric calculations manually could be easily translated
+ to a systematic algorithm.
+ To perform limiting reaction analysis in an efficient way, I found a simple
+ algorithm that would compare the ratios between the number of moles of
+ each reactant divided by its equation coefficient, to determine the limiting
+ reactant.
+ Implementing support for significant figures was a significant challenge,
+ as it required working around the built-in number types provided by Prolog
+ and writing customized parsers to count and record the number of significant
+ figures in a given value, before it was converted to a floating-point number.
+ When producing a result, numbers had to be rounded to the correct number
+ of decimal places, and then any truncated zeros would have to be restored.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The implementation of reaction type analysis was also based on manipulating
+ the ASTs for chemical equations.
+ Identifying reaction types based on the patterns of the formulas involved
+ was a simple task, as Prolog's support for syntactic unification could
+ be used to match a chemical equation structure against patterns representing
+ various types of chemical reactions.
+ This information could then be displayed to the user whenever a chemical
+ equation was entered.
+ Predicting whether a reaction would occur required detailed research.
+ First, I compared different methods of comparing the activity of two elements
+ numerically, and decided to simply use the position of an element in the
+ reactivity series as a numerical index for simple testing.
+ This code was then integrated with the reaction type identification feature.
+ 
+\end_layout
+
+\begin_layout Standard
+I also wanted the program to be able to complete the equations for some
+ chemical reactions, given only the reactants.
+ This can only be done with a high level of accuracy for a few types of
+ reactions: double replacement, neutralization (special case of the former),
+ single replacement and combustion of hydrocarbons.
+ To complete equations, the necessary re-arrangements of ions and elements
+ were identified by matching the left-hand side of a chemical equation structure
+ against a reaction type pattern.
+ Then, the complete formulas for the product compounds were calculated using
+ existing rules specific to the type of compound involved.
+ For example, in the case of an ionic compound, the charge of the metal
+ becomes the subscript of the non-metal, and vice-versa, then the formula
+ is reduced to lowest terms.
+ Once the formulas were determined, they could simply be substituted back
+ into the equation structure.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Once again, my project won at the local science fair, and I am now preparing
+ for the Canada-Wide Science Fair.
+\end_layout
+
+\end_body
+\end_document
